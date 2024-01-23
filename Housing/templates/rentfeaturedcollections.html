@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+  <div class="container mt-2 ">
+    <div class="row">
+        <div class="col-md-12">
+ <ul class="breadcrumb">
+    <li><a href="/housing/">Home</a></li>
+    <li><a href="#">Featuredcollections</a></li>
+    <!-- <li><a href="#">Summer 15</a></li> -->
+    <!-- <li>Italy</li> -->
+  </ul>
+</div>
+</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Featured Rent Collections in Hyderabad</h4>
+        </div>
+    </div>
+</div>
+{{feature_objects.gallery_set.all}}
+<div class="container">
+    <div class="row">
+      {% for feature in feature_objects %}
+    <div class="col-md-9">
+      <div class="card use1">
+      <div class="row">
+      <div class="col-md-4 mt-3">
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+            
+            <!-- The slideshow/carousel -->
+            
+            <div class="carousel-inner1">
+              {% for gallery in feature.rentgallery_set.all %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <a  href="/housing/rent/rents/{{ feature.name}}/"><img src="{{gallery.image.url}}" alt="Los Angeles" class="d-block1" style="width:100%"></a>
+              </div>
+              {% endfor %}
+            </div>
+           
+            
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>
+         
+          
+      </div>
+      <div class="col-md-8 mt-3">
+        <a class="resid" href="/housing/rent/rents/{{ feature.name}}/"><h4>{{feature.name}}</h4></a>
+        <h6>&#8377;{{feature.price}}</h6>
+        <p><b>{{feature.Configuration}} {{feature.Features}}</b> for sale in {{feature.city}}</p>
+        <div class="row">
+          {% for detail in feature.rentdetails_set.all|slice:":3" %}
+
+          <div class="col-md-4 {% if forloop.counter > 3 %}hidden{% endif %}">
+            <div>
+                <h5 class="pro">  <i class="bi bi-textarea"></i>&nbsp;{{detail.name}}</h5>
+                <p class="acres">&nbsp;{{detail.description}}</p>
+            </div>
+        </div>
+        {% endfor %}
+          
+        </div>
+        
+        <!-- <button id="toggleButton" class="btn35"><i class="bi bi-arrow-down-short"></i></button> -->
+        <div>
+          <p id="featureDescriptions" class="acre">
+              {{ feature.description | safe }}...
+          </p><a href="/housing/rent/rents/{{ feature.name}}/" >Read more</a>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+ 
+
+
+
+    
+</div>
+</div>
+
+<div class="pagination win">
+  <ul class="jeck">
+      {% if feature_objects.has_previous %}
+          <li class="pag" ><a class="pag" href="?page=1">First</a></li>
+          <li class="pag"><a  href="?page={{ feature_objects.previous_page_number }}">« Prev</a></li>
+      {% endif %}
+
+      {% for num in feature_objects.paginator.page_range %}
+          <li class="{% if num == feature_objects.number %}active{% endif %} pag">
+              <a href="?page={{ num }}">{{ num }}</a>
+          </li>
+      {% endfor %}
+
+      {% if feature_objects.has_next %}
+          <li class="pag"><a  href="?page={{ feature_objects.next_page_number }}">Next »</a></li>
+          <li class="pag"><a  href="?page={{ feature_objects.paginator.num_pages }}">Last</a></li>
+      {% endif %}
+  </ul>
+</div>
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+
+
+<script>
+  function toggleReadMore() {
+      var propertyDescription = document.getElementById("featureDescriptions");
+      var btnText = document.getElementById("myBtns");
+  
+      if (propertyDescription.classList.contains("acre")) {
+          propertyDescription.classList.remove("acre");
+          btnText.innerHTML = "Read less";
+      } else {
+          propertyDescription.classList.add("acre");
+          btnText.innerHTML = "Read more";
+      }
+  }
+  </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var button = document.getElementById("toggleButton");
+        var details = document.querySelectorAll(".col-md-4");
+
+        button.addEventListener("click", function () {
+            details.forEach(function (detail, index) {
+                if (index > 2) {
+                    detail.classList.toggle("hidden");
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
+   

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="container  ">
+    <div class="row">
+        <div class="col-md-12">
+ <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="#">News</a></li>
+    <!-- <li><a href="#">Summer 15</a></li> -->
+    <!-- <li>Italy</li> -->
+  </ul>
+</div>
+</div>
+</div>
+	<!-- Blog Section end -->
+	<section class="blog-section spad">
+		<div class="container">
+			<div class="row">
+				{% for new in news %}
+				<div class="col-lg-4 col-md-6">
+					
+					<div class="blog-item">
+						<a href="/details/{{new.name}}/" ><img src="{{new.image.url}}" alt=""></a>
+						<div class="blog-text">
+							<div class="blog-date">{{new.list_date}}</div>
+							<a href="/details/{{new.name}}/" ><h4>{{new.name|slice:"0:50"}}</h4></a>
+							<p>{{new.description|slice:"0:199"|safe}} </p>
+							<a href="/details/{{new.name}}/" class="readmore-btn">Read More</a>
+						</div>
+					</div>
+					
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Blog Section end -->
+	           
+			
+	{% endblock %}
+	
+

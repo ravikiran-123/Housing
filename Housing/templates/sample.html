@@ -1,0 +1,47 @@
+
+
+<!-- Include this form and list in your HTML template -->
+<form>
+    <input type="text" id="search-input" name="query" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+
+<ul id="suggestions-list"></ul>
+
+
+
+
+<!-- Include jQuery UI and its CSS from the CDN -->
+
+
+<script>
+    // Ensure the DOM is fully loaded before executing the script
+    $(document).ready(function () {
+        $('#search-input').on('input', function () {
+            const query = $(this).val();
+
+            // Make an AJAX request to get suggestions
+            $.ajax({
+                url: 'housing/suggestions/',
+                data: { query: query },
+                dataType: 'json',
+                success: function (data) {
+                    // Update suggestions in the frontend
+                    const suggestions = data.suggestions;
+                    updateSuggestions(suggestions);
+                }
+            });
+        });
+
+        function updateSuggestions(suggestions) {
+            // Clear previous suggestions
+            $('#suggestions-list').empty();
+
+            // Add new suggestions to the dropdown list
+            const suggestionsList = $('#suggestions-list');
+            suggestions.forEach(function (suggestion) {
+                suggestionsList.append(`<li>${suggestion}</li>`);
+            });
+        }
+    });
+</script>

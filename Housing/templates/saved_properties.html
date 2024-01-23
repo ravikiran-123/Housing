@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+
+
+
+  <div class="container mt-2 ">
+    <div class="row">
+        <div class="col-md-12">
+ <ul class="breadcrumb">
+    <li><a href="/housing/">Home</a></li>
+    <li><a href="#">Saved Properties</a></li>
+  
+  </ul>
+</div>
+</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Saved properties</h4>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+
+    {% for property in saved_properties %}
+    <div class="col-md-9">
+      <div class="card use1">
+      <div class="row">
+      <div class="col-md-4 mt-3">
+        <div>
+            <img  style="width:500px;height:250px;border-radius: 10px;" src="{{ property.project.image.url }}" alt="" class="img-fluid">
+        </div>
+        </div>
+      <div class="col-md-8 mt-3">
+            <a  class="resid" href='/housing/Buy/{{property.project.name}}/'><h2>{{ property.project.name }}</h2></a>
+        <h6>{{ property.project.developer_name }}</h6>
+        <p>{{ property.project.address }}</p>
+        <div class="row">
+          <div class="col-md-5">
+            <div>
+             <h5 class="pro">  <i class="bi bi-textarea"></i>&nbsp;Price</h5>
+              <p class="acres">&nbsp;&#8377;{{property.project.price}}</p>
+          </div>
+          </div>
+          <div class="col-md-5">
+            <div>
+              <h5 class="pro"> <i class="bi bi-textarea"></i>&nbsp;Configuration</h5>
+              <p class="acres">&nbsp;{{property.project.Configuration}}</p>
+          </div>
+          </div>
+        </div>
+        <p class="acre">{{property.project.description|safe|slice:"0:100"}}...<a href="/housing/Buy/{{property.project.name}}/">More</a></p>
+      </div>
+      </div>
+      <span class="liked-heart fas fa-heart" data-project-id="{{ property.project.id }}"></span>
+
+    </div>
+    </div>
+    {% endfor %}
+
+
+    {% for property in rent_saved_properties %}
+    <div class="col-md-9">
+      <div class="card use1">
+      <div class="row">
+      <div class="col-md-4 mt-3">
+        <div>
+            <img  style="width:500px;height:250px;border-radius: 10px;" src="{{ property.project.image.url }}" alt="" class="img-fluid">
+        </div>
+        </div>
+      <div class="col-md-8 mt-3">
+            <a  class="resid" href='/housing/Buy/{{property.project.name}}/'><h2>{{ property.project.name }}</h2></a>
+        <h6>{{ property.project.developer_name }}</h6>
+        <p>{{ property.project.address }}</p>
+        <div class="row">
+          <div class="col-md-5">
+            <div>
+             <h5 class="pro">  <i class="bi bi-textarea"></i>&nbsp;Price</h5>
+              <p class="acres">&nbsp;&#8377;{{property.project.price}}</p>
+          </div>
+          </div>
+          <div class="col-md-5">
+            <div>
+              <h5 class="pro"> <i class="bi bi-textarea"></i>&nbsp;Configuration</h5>
+              <p class="acres">&nbsp;{{property.project.Configuration}}</p>
+          </div>
+          </div>
+        </div>
+        <p class="acre">{{property.project.description|safe|slice:"0:100"}}...<a href="/housing/Buy/{{property.project.name}}/">More</a></p>
+      </div>
+      </div>
+      <span class="liked-heart fas fa-heart" data-project-id="{{ property.project.id }}"></span>
+
+    </div>
+    </div>
+    {% endfor %}
+
+
+    {% for property in commercial_saved_properties %}
+    <div class="col-md-9">
+      <div class="card use1">
+      <div class="row">
+      <div class="col-md-4 mt-3">
+        <div>
+            <img  style="width:500px;height:250px;border-radius: 10px;" src="{{ property.project.image.url }}" alt="" class="img-fluid">
+        </div>
+        </div>
+      <div class="col-md-8 mt-3">
+            <a  class="resid" href='/housing/Buy/{{property.project.name}}/'><h2>{{ property.project.name }}</h2></a>
+        <h6>{{ property.project.developer_name }}</h6>
+        <p>{{ property.project.address }}</p>
+        <div class="row">
+          <div class="col-md-5">
+            <div>
+             <h5 class="pro">  <i class="bi bi-textarea"></i>&nbsp;Price</h5>
+              <p class="acres">&nbsp;&#8377;{{property.project.price}}</p>
+          </div>
+          </div>
+          <div class="col-md-5">
+            <div>
+              <h5 class="pro"> <i class="bi bi-textarea"></i>&nbsp;Configuration</h5>
+              <p class="acres">&nbsp;{{property.project.Configuration}}</p>
+          </div>
+          </div>
+        </div>
+        <p class="acre">{{property.project.description|safe|slice:"0:100"}}...<a href="/housing/Buy/{{property.project.name}}/">More</a></p>
+      </div>
+      </div>
+      <span class="liked-heart fas fa-heart" data-project-id="{{ property.project.id }}"></span>
+
+    </div>
+    </div>
+    {% endfor %}
+
+
+    {% for property in plot_saved_properties %}
+    <div class="col-md-9">
+      <div class="card use1">
+      <div class="row">
+      <div class="col-md-4 mt-3">
+        <div>
+            <img  style="width:500px;height:250px;border-radius: 10px;" src="{{ property.project.image.url }}" alt="" class="img-fluid">
+        </div>
+        </div>
+      <div class="col-md-8 mt-3">
+            <a  class="resid" href='/housing/Buy/{{property.project.name}}/'><h2>{{ property.project.name }}</h2></a>
+        <h6>{{ property.project.developer_name }}</h6>
+        <p>{{ property.project.address }}</p>
+        <div class="row">
+          <div class="col-md-5">
+            <div>
+             <h5 class="pro">  <i class="bi bi-textarea"></i>&nbsp;Price</h5>
+              <p class="acres">&nbsp;&#8377;{{property.project.price}}</p>
+          </div>
+          </div>
+          <div class="col-md-5">
+            <div>
+              <h5 class="pro"> <i class="bi bi-textarea"></i>&nbsp;Configuration</h5>
+              <p class="acres">&nbsp;{{property.project.Configuration}}</p>
+          </div>
+          </div>
+        </div>
+        <p class="acre">{{property.project.description|safe|slice:"0:100"}}...<a href="/housing/Buy/{{property.project.name}}/">More</a></p>
+      </div>
+      </div>
+      <span class="liked-heart fas fa-heart" data-project-id="{{ property.project.id }}"></span>
+
+    </div>
+    </div>
+    {% endfor %}
+   
+ 
+    
+</div>
+</div>
+
+<div class="pagination">
+    <ul>
+        {% if feature_objects.has_previous %}
+            <li><a href="?page=1">First</a></li>
+            <li><a href="?page={{ feature_objects.previous_page_number }}">« Prev</a></li>
+        {% endif %}
+  
+        {% for num in feature_objects.paginator.page_range %}
+            <li class="{% if num == feature_objects.number %}active{% endif %}">
+                <a href="?page={{ num }}">{{ num }}</a>
+            </li>
+        {% endfor %}
+  
+        {% if feature_objects.has_next %}
+            <li><a href="?page={{ feature_objects.next_page_number }}">Next »</a></li>
+            <li><a href="?page={{ feature_objects.paginator.num_pages }}">Last</a></li>
+        {% endif %}
+    </ul>
+  </div>
+
+   <script>
+    $(document).ready(function() {
+        $('.liked-heart').each(function() {
+            var projectId = $(this).data('project-id');
+            var likeHeart = $(this);
+    
+            likeHeart.click(function() {
+                // Delete the project
+                $.ajax({
+                    type: 'POST',
+                    url: '/housing/delete_project/' + projectId + '/',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.success) {
+                            likeHeart.closest('.portfolio-items').remove();
+                            location.reload();
+                        } else {
+                            console.log('Error:', data.error_message);
+                        }
+                    }
+                });
+            });
+        });
+    });
+    </script> 
+
+<script>
+    $(document).ready(function() {
+        $('.liked-heart').each(function() {
+            var projectId = $(this).data('project-id');
+            var likeHeart = $(this);
+    
+            likeHeart.click(function() {
+                // Delete the project
+                $.ajax({
+                    type: 'POST',
+                    url: '/housing/rent_delete_project/' + projectId + '/',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.success) {
+                            likeHeart.closest('.portfolio-items').remove();
+                            location.reload();
+                        } else {
+                            console.log('Error:', data.error_message);
+                        }
+                    }
+                });
+            });
+        });
+    });
+    </script>
+
+<script>
+    $(document).ready(function() {
+        $('.liked-heart').each(function() {
+            var projectId = $(this).data('project-id');
+            var likeHeart = $(this);
+    
+            likeHeart.click(function() {
+                // Delete the project
+                $.ajax({
+                    type: 'POST',
+                    url: '/housing/commercial_delete_project/' + projectId + '/',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.success) {
+                            likeHeart.closest('.portfolio-items').remove();
+                            location.reload();
+                        } else {
+                            console.log('Error:', data.error_message);
+                        }
+                    }
+                });
+            });
+        });
+    });
+    </script> 
+
+ <script>
+    $(document).ready(function() {
+        $('.liked-heart').each(function() {
+            var projectId = $(this).data('project-id');
+            var likeHeart = $(this);
+    
+            likeHeart.click(function() {
+                // Delete the project
+                $.ajax({
+                    type: 'POST',
+                    url: '/housing/plot_delete_project/' + projectId + '/',
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if (data.success) {
+                            likeHeart.closest('.portfolio-items').remove();
+                            location.reload();
+                        } else {
+                            console.log('Error:', data.error_message);
+                        }
+                    }
+                });
+            });
+        });
+    });
+    </script> 
+{% endblock %}
+   

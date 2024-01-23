@@ -1,0 +1,205 @@
+a:hover,
+a:focus{
+    text-decoration: none;
+    outline: none;
+}
+.tab{ font-family: 'Nunito', sans-serif; }
+.tab .nav-tabs{ border: none; }
+.tab .nav-tabs li a{
+    color:#08ad9c;
+    background-color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 20px 8px;
+    margin: 0 5px 10px 0;
+    border: 5px solid #fff;
+    border-radius: 0;
+    box-shadow: 0 0 7px rgba(0,0,0,0.1), 0 0 5px rgba(0,0,0,0.15) inset;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li a:hover ,
+.tab .nav-tabs li.active a:hover{
+    color: #fff;
+    background-color: #fff;
+    border: 5px solid #fff;
+}
+.tab .nav-tabs li a:before{
+    content: "";
+    background-color: #08ad9c;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: rotate(20deg);
+    position: absolute;
+    top: 150%;
+    left: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease 0s,transform 0.3s ease 0.13s, top 0.5s ease 0s;
+}
+.tab .nav-tabs li.active a:before,
+.tab .nav-tabs li a:hover:before{
+    opacity: 1;
+    transform: rotate(0);
+    top: 0;
+}
+.tab .tab-content{
+    color:#fff;
+    background-color: #08ad9c;
+    font-size: 17px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    padding: 20px;
+    border: 10px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15), 0 0 10px rgba(0,0,0,0.15) inset;
+    position: relative;
+}
+@media only screen and (max-width: 479px){
+    .tab .nav-tabs li{
+        width: 100%;
+        text-align: center;
+        margin: 0 0 5px;
+    }
+}
+<div class="container mt-5">
+	<div class="title1">
+		<h1>In spotlight</h1>
+		<p>Find Your Best place to live with us</p>
+	</div>
+	
+	<!-- Card Start -->
+	<div class="card jeck">
+	  <div class="row ">
+  
+		<div class="col-md-4  grad">
+		  <div class="card-block px-6">
+			<div class="card-title">
+				<div class="row">
+					<div class="col-md-4">
+						<img src="img/thumb.webp" alt="insp">
+					</div>
+					<div class="col-md-8">
+						<h6 class="lit">IRA Reality</h6>
+						<a href="" class="lit">View projects</a>
+					</div>
+				</div>
+				 </div>
+			<div class="card-text lit">
+			 <h6>IRA The Square Villas</h6>
+			 <p>shamshabad,south Hyderabad</p>
+			</div>
+			<div class="card-text lit">
+		  <h6>&#8377 1.21Cr-1.68Cr</h6>
+		  <p>3 BHK Apartments</p>
+			</div>
+			<!-- <br> -->
+			<!-- <a href="#" class="mt-auto btn btn-primary  ">Read More</a> -->
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#ealemodAl">
+				Contact
+				  </button>
+				  <!--Model-->
+			<div class="modal fade" id="ealemodAl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h5 class="modal-title" id="most">
+						<i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+					</h5>
+			
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					<div class="sel">
+						<h5>Contact seller</h5>
+						<div class="row">
+						   <div class="col-md-3">
+						<div>
+						   &nbsp;&nbsp;<img src="img/thumb.jpg (4).webp">
+						</div>
+					   </div>
+					   <div class="col-md-3">
+						<div>
+						   <h6>GHR Infra</h6>
+						   <p>Developer</p>
+						   <h6>+9191957...</h6>
+						</div>
+					   </div>
+					   </div>
+					   <div>
+						   <h5>Please share Your Contact</h5>
+					   </div>
+				   </div>
+					<div class="modal-body">
+						<div class="container">
+							<div class="form-floating mb-3">
+								<label for="floatingInput">Name</label>
+								<input type="text" class="form-control" id="floatingInput" placeholder="Name">
+							  
+							  </div>
+							  <div class="form-floating mb-3">
+								<label for="floatingPassword">Phone</label>
+								<input type="number" class="form-control" id="floatingPassword" placeholder="phone">
+							   
+							  </div>
+							  <div class="form-floating mb-3">
+								<label for="floatingInput">Email address</label>
+								<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+							   
+							  </div>
+							  <label class="check">
+								<input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+							  <br><input type="checkbox" checked="checked" name="remember"> I am intrested in home loans
+							</label>
+						  </div>
+			
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Get contact Details</button>
+					  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+					</div>
+				  </div>
+				</div>
+			  </div>
+		  </div>
+		</div>
+		<!-- Carousel start -->
+		<div class="col-md-8">
+		  <div id="CarouselTest" class="carousel slide" data-ride="carousel">
+			<!-- <ul class="carousel-indicators">
+			  <li data-target="#CarouselTest" data-slide-to="0" class="active"></li>
+			  <li data-target="#CarouselTest" data-slide-to="1"></li>
+			  <li data-target="#CarouselTest" data-slide-to="2"></li>
+  
+			</ul> -->
+			<div class="carousel-inner">
+			  <div class="carousel-item active">
+				<a href="property.html"><img class="d-block cimg" src="img/inspotlight-1.avif" alt=""></a>
+			  </div>
+			  <div class="carousel-item">
+				<a href="property.html"><img class="d-block cimg" src="img/inspotlight-2.avif" alt=""></a>
+			  </div>
+			  <div class="carousel-item">
+				<a href="property.html"><img class="d-block cimg" src="img/inspotlight-1.avif" alt=""></a>
+			  </div>
+			  <a class="carousel-control-prev" href="#CarouselTest" role="button" data-slide="prev">
+	  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Previous</span>
+	</a>
+			  <a class="carousel-control-next" href="#CarouselTest" role="button" data-slide="next">
+	  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	  <span class="sr-only">Next</span>
+	</a>
+			</div>
+		  </div>
+		</div>
+		<!-- End of carousel -->
+	  </div>
+	</div>
+	<!-- End of card -->
+  
+  </div>

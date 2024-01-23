@@ -1,0 +1,508 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<style data-emotion-css="6yl0sf">
+</style>
+<div class="css-6yl0sf">
+	<style data-emotion-css="kmb448">
+	</style>
+	<div class="css-kmb448" style="background-image: url({{banners.image.url}});">
+		<style data-emotion-css="13c1cwa">
+		</style>
+		<div class="css-13c1cwa">
+			<style data-emotion-css="1cn7om3">
+			</style>
+			<h1 class="banner-title css-1cn7om3">Properties for Rent in  <strong
+					class="bold">{{leases.0.city}}</strong></h1>
+			<style data-emotion-css="ktu8be">
+			</style>
+			<!-- <div class="css-ktu8be">Parr...se Perfect</div> -->
+			<style data-emotion-css="cryaei">
+			</style>
+			<div class="search-wrap css-cryaei">
+				<style data-emotion-css="k008qs">
+				</style>
+				<nav data-q="service" class="css-k008qs">
+					<style data-emotion-css="1rcmzf8">
+					</style><a data-q="active" class="search-tab search-active-tab css-1rcmzf8"
+						href="/housing/" target="_self">Buy</a>
+					<style data-emotion-css="18w4akt">
+						
+					</style><a data-q="false" class="search-tab css-18w4akt"
+						href="/housing/rent/" target="_self">Rent</a>
+					<style data-emotion-css="167vrx2">
+						
+						
+					</style><a data-q="false" class="search-tab css-167vrx2"
+						href="/housing/commercial/"target="_self">Commercial</a><a
+						data-q="false" class="search-tab css-18w4akt" href="/housing/plots/"
+						target="_self">Plots</a>
+				</nav>
+				<style data-emotion-css="5pw9gy">
+					
+				</style>
+				<div class="search-box css-5pw9gy">
+					<style data-emotion-css="126ysyq">
+						
+						
+					</style>
+				
+				
+					<style data-emotion-css="1p9lys">
+						
+					</style>
+					<div data-q="search" class="css-1p9lys">
+						<style data-emotion-css="1om6f21">
+							
+						</style>
+						<form method="get"  action="/housing/property-search/">
+						<div id="autocomplete" >
+						<input type="text"
+							placeholder="Search for locality, landmark, project, or builder"
+							class="autocomplete-input"  name="query" value="" />
+							<style data-emotion-css="1ddin2y"> 
+							
+							</style><button class="cta  css-1ddin2y">Search</button>
+							<ul class="autocomplete-result-list"></ul>
+							
+						</div>
+						
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			<style data-emotion-css="56j96e">
+				
+			</style>
+			<div class="css-56j96e">
+				<style data-emotion-css="ibbbzb animation-8cmihf">
+					
+				</style>
+				<div class="css-ibbbzb"></div>
+				<style data-emotion-css="1igh16y">
+				
+				</style>  
+			 </div>
+		</div>
+	</div>
+</div>
+	
+    <!-- Property Section -->
+	<section class="property-section">
+		<div class="container rences">
+			<div>
+				<h2>Recently Added</h2>
+				<p>Based on preferences of users like you</p>
+			</div>
+			<div class="row">
+				{% for rent in leases %}
+				<div class="col-lg-4">
+					<div class="property-item">
+						<div class="pi-image">
+							<a href="/housing/rent/rents/{{rent.name}}"><img src="{{rent.image.url}}" alt="" class="dge"></a>
+							<div class="pi-badge new">New</div>
+						</div>
+						<span class="like-heart {% if rent.is_liked_by_user %}fas fa-heart{% else %}fa fa-heart{% endif %}" data-project-id="{{ rent.id }}"></span>
+
+						<div class="lok">{{rent.name}}</div>
+						<div class="ment">{{rent.sub_title}}</div>
+					<div class="bowl">{{rent.address}}</div>
+						<div class="est">&#8377 {{rent.price}}</div>
+							<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#eamplemodAl">
+							Contact
+							  </button>
+							  <!-- Modal -->
+							  <div class="modal fade" id="eamplemodAl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="most">
+										<i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+									</h5>
+							
+									  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="sel">
+										<h5>Contact seller</h5>
+										<div class="row">
+										   <div class="col-md-3">
+										<div>
+										   &nbsp;&nbsp;<img src="{{rent.logo_image.url}}">
+										</div>
+									   </div>
+									   <div class="col-md-3">
+										<div>
+										   <h6>{{rent.developer_name}}</h6>
+										   <p>Developer</p>
+										   <h6>+9191957...</h6>
+										</div>
+									   </div>
+									   </div>
+									   <div>
+										   <h5>Please share Your Contact</h5>
+									   </div>
+								   </div>
+									<div class="modal-body">
+										<div class="container">
+											<form  method="POST" action="/housing/rentcontact/" target="_blank">
+												{% csrf_token %}
+											<!-- <div class="form-floating mb-3">
+												<label for="floatingInput">Name</label> -->
+												<input type="text" class="form-control" name="name" id="xname" placeholder="Name">
+											  
+											  <!-- </div>
+											  <div class="form-floating mb-3">
+												<label for="floatingPassword">Phone</label> -->
+												<input type="number" class="form-control" name="phone_no" id="xname" placeholder="phone">
+											   
+											  <!-- </div>
+											  <div class="form-floating mb-3">
+												<label for="floatingInput">Email address</label> -->
+												<input type="email" class="form-control"  name="email" id="xname" placeholder="name@example.com">
+											   
+											  <!-- </div> -->
+											  <input type="hidden" name="product_id" value="{{ rent.id }}">
+
+											  <label class="check">
+												<input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+											  <br><input type="checkbox" checked="checked" name="remember"> I am intrested in home loans
+											</label>
+											<button type="submit" href="/housing/">Get contact Details</button>
+											</form>
+										  </div>
+							
+									</div>
+									<!-- <div class="modal-footer">
+									    <button type="button" class="btn btn-secondary" data-dismiss="modal">Get contact Details</button> -->
+									  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+									<!-- </div> -->
+								  </div>
+								</div>
+							  </div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Property Section end -->
+    <!--Featured collections start-->
+	<div class="container">
+        <div class="sec-title">
+            <h2><span>Featured</span>Collections</h2>
+            <p>Handpicked projects for you.</p>
+                
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="news-slider-25" class="owl-carousel">
+					{% for feature in rents %}
+                    <div class="pst-slide">
+                        <div class="pst-img">
+                           <a href="/housing/rent/collections/{{feature.id}}/"> <img src="{{feature.image.url}}" alt="" class="tered"></a>
+                            <div class="centered">
+                                <h6>{{feature.name}}</h6>
+                                <p>{{feature.Description}}</p>
+                            </div>
+                            <a href="/housing/rent/collections/{{feature.id}}/" class="over-layer ties">
+                                <p>{{features_counts}}
+                            </br>Properties</p>
+                            </i></a>
+                        </div>
+                        <!-- <div class="pst-content">
+                            <h3 class="pst-title">
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                            </h3>
+                            <p class="pst-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur cumque dolorum, ex incidunt ipsa laudantium necessitatibus neque quae tempora......</p>
+                            <span class="pst-date"><i class="fa fa-clock-o"></i>Feb 7, 2016</span>
+                            <a href="" class="read-more">read more</a>
+                        </div> -->
+                    </div>
+					{% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Featured collections end-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="exp">Housing Experts</h2>
+				<p>Sellers with complete knowledge about locality and verified listings</p>
+				<div id="news-slider-5" class="owl-carousel">
+					{% for expert in experts %}
+					<div class="post-slide">
+						<div class="post-img2">
+						<a href="/housing/rent/rentexperts/{{expert.id}}/"><img src="{{ expert.image.url }}" alt="" class="img-responsive"></a>
+							<a href="/housing/rent/rentexperts/{{expert.id}}/" class="overlay resid">{{expert.developer_name|slice:"0:8"}}...</i></a>
+							<button class="house">Housing Expert</button>
+							<div>
+								<div class="flo">
+								<h6>&nbsp;&nbsp;&nbsp;&nbsp;{{ expert.established_year}}</h6>
+								<p>Experience</p>
+							</div>
+							<div class="righ">
+								<h6>|&nbsp;&nbsp;&nbsp;&nbsp;{{expert.total_projects}}</h6>
+								<p>&nbsp; Properties</p>
+							</div>
+							<div>
+								<ul class="miyapur">
+									<li><button class="mi" >{{expert.city}}</button></li>&nbsp;
+									<li><button class="mi">{{expert.area}}</button></li>&nbsp;
+									<!-- <li><button class="mi">Aminpur</button></li> -->
+								</ul>
+							</div>
+							
+
+						</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mt-5">
+		<div class="section-title ml-3">
+			
+			<h2> Top Localities</h2>
+		</div>
+		
+		<div class="row mt-5">
+			<div class="col-md-12 text-center">
+				<div class="tab" role="tabpanel">
+					<ul class="nav nav-tabs" role="tablist">
+						{% for map in maps %}
+						<li role="presentation" class="active"><a href="#{{map.map_location}}" aria-controls="home" role="tab" data-toggle="tab">{{map.map_location}}</a></li>
+						{% endfor %}
+					</ul>
+				   
+					<!-- Tab panes -->
+					
+					<div class="tab-content tabs">
+						{% for map in maps %}
+						<div role="tabpanel" class="tab-pane {% if forloop.first %} in active {% endif %}" id="{{map.map_location}}">
+							<iframe src="{{map.lc_map}}" class="map" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--map Experts end-->
+	
+	
+
+	<!-- buttons and slider start -->
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>News & Articles</h2>
+				<p>Read what's happening in Real Estate</p>
+				<div id="news-sliderr" class="owl-carousel">
+					{% for residential in residences %}
+					<div class="postt-slide">
+						<img src="{{residential.image.url}}" alt="">
+						<!-- <div class="post-date">
+							<span class="month">Nov</span>
+							<span class="date">5</span>
+						</div> -->
+						<h3 class="postt-title">
+							<a  href="/housing/details/{{residential.name}}">{{residential.name|slice:":50"}}</a>
+						</h3>
+						<p class="postt-description">
+							<a  class="resid" href="/housing/details/{{residential.name}}">{{ residential.description|slice:"0:199"|safe}}..</a>
+						</p>
+						<!-- <a href="#" class="read-more">read more<i class="fa fa-chevron-right"></i></a> -->
+						<div class="container">
+							<div class="row">
+							<div class="col-md-6">
+								<p class="zint">{{residential.article_by}}</p>
+							</div>
+							<div class="col-md-6 dsk">
+								<p class="zint">{{residential.list_date.date}}</p>
+							</div>
+							
+						</div>
+					</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			  
+		</div>
+	</div>
+
+
+	<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'assets/js/owl.carousel.js' %}"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+        $("#news-slider-25").owlCarousel({
+            items : 3,
+            itemsDesktop:[1199,3],
+            itemsDesktopSmall:[980,2],
+            itemsMobile : [600,1],
+            navigation:true,
+            navigationText:["",""],
+            pagination:true,
+            autoPlay:true
+        });
+    });
+    </script>
+
+<script>
+	$(document).ready(function() {
+    $("#news-slider-5").owlCarousel({
+        items : 4,
+        itemsDesktop:[1199,3],
+        itemsDesktopSmall:[980,2],
+        itemsMobile : [550,1],
+        pagination:false,
+        autoPlay:true
+    });
+});
+</script>
+
+	<script>
+		$(document).ready(function() {
+		$("#news-slider-custom").owlCarousel({
+			items : 4,
+			itemsDesktop:[1199,3],
+			itemsDesktopSmall:[980,2],
+			itemsMobile : [550,1],
+			pagination:false,
+			autoPlay:true
+		});
+	});
+	</script>
+	 <script>
+		$(document).ready(function() {
+			$("#news-sliderr").owlCarousel({
+				items : 3,
+				itemsDesktop:[1199,3],
+				itemsDesktopSmall:[980,2],
+				itemsMobile : [600,1],
+				navigation:true,
+				navigationText:["",""],
+				pagination:true,
+				autoPlay:true
+			});
+		});
+		</script>
+		<script>
+			// Get the canvas element
+			var canvas = document.getElementById("myCanvas");
+		
+			// Get the 2D rendering context
+			var ctx = canvas.getContext("2d");
+		
+			// Draw a red rectangle
+			ctx.fillStyle = "red";
+			ctx.fillRect(50, 50, 200, 100);
+		
+			// Draw a blue circle
+			ctx.fillStyle = "blue";
+			ctx.beginPath();
+			ctx.arc(250, 250, 50, 0, 2 * Math.PI);
+			ctx.fill();
+		</script>
+
+<script>
+	$(function() {
+  $('.menu-click').click( function() {
+    $('.menu').toggleClass('open');
+  });
+  $("body").on("swipeleft", function() {
+    $('.menu').addClass('open');
+  });
+  $(".menu").on("swiperight", function() {
+    $('.menu').toggleClass('open');
+  });
+});
+ </script>
+
+
+<script>
+	new Autocomplete('#autocomplete', {
+	  search: input => {
+		const url = `/housing/search/?query=${encodeURIComponent(input)}`
+		return new Promise(resolve => {
+		  fetch(url)
+			.then(response => response.json())
+			.then(data => {
+			  const addressSuggestions = data.payload.map(d => d.address);
+			  const citySuggestions = data.payload.map(d => d.city);
+			  const developerNameSuggestions = data.payload.map(d => d.developer_name);
+			  
+			  // Combine suggestions from both fields
+			  const combinedSuggestions = [...addressSuggestions, ...citySuggestions, ...developerNameSuggestions];
+			  
+			  console.log(combinedSuggestions);
+			  resolve(combinedSuggestions);
+			})
+		})
+	  },
+	  renderResult: (result, props) => {
+		let group = '';
+		if (result.index % 3 === 0) {
+		  group = `<li class="group">Group</li>`;
+		}
+		return `
+		${group}
+		<li ${props}>
+		  <div class="wiki-title">
+			${result}
+		  </div>
+		</li>
+		`;
+	  },
+	});
+  </script>
+
+<script>
+	$(document).ready(function() {
+		$('.like-heart').click(function(event) {
+			event.preventDefault();
+			var projectId = $(this).data('project-id');
+			var likeHeart = $(this);
+	
+			// Determine the action based on the current state
+			var action = likeHeart.hasClass('liked') ? 'unlike' : 'like';
+	
+			$.ajax({
+				type: 'POST',
+				url: '/housing/rent_like_project/',
+				data: {
+					'project_id': projectId,
+					'action': action,
+					'csrfmiddlewaretoken': '{{ csrf_token }}'
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.success) {
+						// Toggle the appearance of the heart icon
+						likeHeart.toggleClass('liked');
+					} else {
+						console.log('Error:', data.error_message);
+					}
+				}
+			});
+		});
+	});
+	</script>
+
+
+{% endblock %}

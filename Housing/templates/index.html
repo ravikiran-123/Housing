@@ -1,0 +1,1048 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<style data-emotion-css="6yl0sf">
+</style>
+<div class="css-6yl0sf">
+	<style data-emotion-css="kmb448">
+	</style>
+	<div class="css-kmb448" style="background-image: url({{banners.image.url}});">
+		<style data-emotion-css="13c1cwa">
+		</style>
+		<div class="css-13c1cwa">
+			<style data-emotion-css="1cn7om3">
+			</style>
+			<h1 class="banner-title css-1cn7om3">Properties for Sale in <strong
+					class="bold">{{recents.0.city}} </strong></h1>
+			<style data-emotion-css="ktu8be">
+			</style>
+			<!-- <div class="css-ktu8be">Parr...se Perfect</div> -->
+			<style data-emotion-css="cryaei">
+			</style>
+			<div class="search-wrap css-cryaei">
+				<style data-emotion-css="k008qs">
+				</style>
+				<nav data-q="service" class="css-k008qs">
+					<style data-emotion-css="1rcmzf8">
+					</style><a data-q="active" class="search-tab search-active-tab css-1rcmzf8"
+						href="/housing/" target="_self">Buy</a>
+					<style data-emotion-css="18w4akt">
+						
+					</style><a data-q="false" class="search-tab css-18w4akt"
+						href="/housing/rent/" target="_self">Rent</a>
+					<style data-emotion-css="167vrx2">
+						
+						
+					</style><a data-q="false" class="search-tab css-167vrx2"
+						href="/housing/commercial/"target="_self">Commercial</a><a
+						data-q="false" class="search-tab css-18w4akt" href="/housing/plots/"
+						target="_self">Plots</a>
+				</nav>
+				<style data-emotion-css="5pw9gy">
+					
+				</style>
+				<div class="search-box css-5pw9gy">
+					<style data-emotion-css="126ysyq">
+						
+						
+					</style>
+				
+				
+					<style data-emotion-css="1p9lys">
+						
+					</style>
+					<div data-q="search" class="css-1p9lys">
+						<style data-emotion-css="1om6f21">
+							
+						</style>
+						<form method="get"  action="/housing/property-search/ ">
+						<div id="autocomplete" >
+						<input type="text"
+							placeholder="Search for locality, landmark, project, or builder"
+							class="autocomplete-input"  name="query" value="" />
+							<style data-emotion-css="1ddin2y"> 
+							
+							</style><button class="cta  css-1ddin2y">Search</button>
+							<ul class="autocomplete-result-list"></ul>
+							
+						</div>
+						
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			<style data-emotion-css="56j96e">
+				
+			</style>
+			<div class="css-56j96e">
+				<style data-emotion-css="ibbbzb animation-8cmihf">
+					
+				</style>
+				<div class="css-ibbbzb"></div>
+				<style data-emotion-css="1igh16y">
+				
+				</style>  
+			 </div>
+		</div>
+	</div>
+</div>
+
+
+	<!--Inspotlight start-->
+<div class="container live">
+    <div class="title1">
+        <h2>In spotlight</h2>
+        <p>Find Your Best place to live with us</p>
+    </div>
+    <div id="demo" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+            {% for spot in spots %}
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></button>
+            {% endfor %}
+        </div>
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+            {% for spot in spots %}
+            <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                <div class="row">
+                    <div class="col-md-4 grad">
+                        <div class="spotlight">
+                            <div class="card-block px-6">
+                                <div class="card-title">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <img src="{{ spot.logo_image.url }}" alt="insp">
+                                        </div>
+                                        <div class="col-md-8 mt-3">
+                                            <h4 class="lit">{{ spot.developer_name }}</h4>
+                                            <a href="/housing/Buy/{{ spot.name }}" class="lit">View projects</a>
+											<span class="like-heart {% if spot.is_liked_by_user %}fas fa-heart{% else %}fa fa-heart{% endif %}" data-project-id="{{ spot.id }}"></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-text lit">
+                                    <h4>{{ spot.name }}</h4>
+                                    <p>{{ spot.address }}</p>
+                                </div>
+                                <div class="card-text lit">
+                                    <h4>&#8377; {{ spot.price }}</h4>
+                                    <p>{{ spot.Configuration }}</p>
+                                </div>
+
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ealemodAl{{ spot.id }}">
+                                    Contact
+                                </button>
+
+                                <!-- Model -->
+                                <div class="modal fade" id="ealemodAl{{ spot.id }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ spot.id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="most">
+                                                    <i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp;Awesome! Most liked Project in this area
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="sel">
+                                                <h5>Contact seller</h5>
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <img src="{{ spot.logo_image.url }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div>
+                                                            <h6>{{ spot.developer_name }}</h6>
+                                                            <p>Developer</p>
+                                                            <h6>+9191957...</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h5>Please share Your Contact</h5>
+                                                </div>
+                                            </div>
+                                            <div class="modal-body {% if forloop.first %} active{% endif %}">
+                                                <div class="container">
+                                                <form  method="POST" action="{% url 'contact' %}" target="_blank">
+                                                    {% csrf_token %}
+                                                    <!-- <div class="form-floating mb-3">
+                                                        <label for="floatingInput">Name</label> -->
+                                                        <input type="text" class="form-control" name="name" id="xname" placeholder="Name" required>
+                                                    <!-- </div>
+                                                    <div class="form-floating mb-3">
+                                                        <label for="floatingPassword">Phone</label> -->
+                                                        <input type="number" class="form-control" name="phone_no" id="xname" placeholder="phone" required>
+                                                    <!-- </div>
+                                                    <div class="form-floating mb-3">
+                                                        <label for="floatingInput">Email address</label> -->
+                                                        <input type="email" class="form-control"  name= "email" id="xname" placeholder="name@example.com" required>
+														<input type="hidden" name="product_id" value="{{ spot.id }}">
+                                                    <!-- </div> -->
+                                                    <label class="check">
+                                                        <input type="checkbox" checked="checked" name="remember"required> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+                                                        <!-- <br><input type="checkbox" checked="checked" name="remember"> I am interested in home loans -->
+                                                    </label>
+                                                    <button type="submit" href="/housing/">Get contact Details</button>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Get contact Details</button>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <a href="/housing/Buy/{{ spot.name }}"><img src="{{ spot.image.url }}" alt="Chicago" class="d-block cimg" style="width:100%"></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+	<!--Inspotlight end-->
+
+<!--top projects-->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+			<h2>Top projects</h2>
+			<p>Best developers in Hyderabad to explore</p>
+			
+            <div id="news-slderrr" class="owl-carousel">
+				{% for top in topprojects %}
+                <div class="post-slide">
+                    <div class="post-img">
+                       <a href="/housing/Buy/{{ top.name }}/"> <img src="{{top.image.url}}" alt=""></a>
+                    </div>
+                    <div class="post-review">
+						<div class="container">
+							<div class="row mb-3">
+								<div class="col-md-6">
+									<h4>{{top.name}}</h4>
+									<p>by {{top.developer_name}}</p>
+								</div>
+								<div class="col-md-6">
+									<h4>&#8377;{{top.price}}</h4>
+								</div>
+							</div>
+							<div>
+								<h6>{{top.Configuration}}</h6>
+								<p>{{top.address}}</p>
+							</div>
+						</div>
+                       
+                        <!-- <a href="#" class="read-more">read more</a> -->
+                    </div>
+                </div>
+				{% endfor %}
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!--top projects end-->
+
+<!--projects in focus start-->
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+			<h2>Project in Focus</h2>
+			<p>Noteworthy projects in Hyderabad</p>
+			
+            <div id="news-srrr" class="owl-carousel">
+				{% for focus in focuses %}
+                <div class="post-slide">
+                    <div class="post-img">
+                       <a href="/housing/Buy/{{focus.name}}"> <img src="{{ focus.image.url }}" alt="" class="ble"></a>
+					   <div class="bottomleft">
+						<h5 class="ina">{{focus.name}}</h5>
+						<p class="nagar">by {{focus.developer_name}}</p>
+					</div>
+							<div class="bottomleft1">
+                              <h6 class="ina">{{focus.Configuration}}</h6>
+							  <p class="nagar">{{focus.address|slice:"0:25"}}...</p>
+							</div>
+							<div class="bottomright">
+								<h5> &#8377;{{focus.price}}</h5>
+							  </div>
+                    </div>
+                </div>
+				{% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!--projects in focus end-->
+
+
+ <!--Feature Developers start-->
+ <div class="container mt-5">
+    <div class="row">
+		<h2>Features <b>Developers</b></h2>
+		<p>Prominent developers in Hyderabad</p>
+		<div class="col-md-12 mt-3">
+            <div id="news-slder" class="owl-carousel">
+				{% for dev in developers_with_projects %}
+                <div class="postr-slide">
+					
+					<div class="postr-review">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-4">
+								<a href="/housing/developers/{{dev.developer.id}}"><img src="{{dev.developer.image.url}}" alt="fd"></a>
+								</div>
+								<div class="col-md-6">
+									<h6>{{dev.developer.developer_name}}</h6>
+										<div class="row">
+											<div class="col-md-7">
+											<h6>{{dev.developer.established_year}}</h6>
+											<p>year estd.</p>
+											</div>
+												<div class="col-md-5">
+													<h6>{{dev.developer.total_projects}}</h6>
+													<p>Projects</p>
+												</div>
+										</div>
+							
+                    
+								</div>
+								<p class="postr-description">{{dev.developer.description|slice:"0:80"}}</P>
+							</div>
+						</div>
+                    </div>
+					<div class="postr-img">
+                        <div class="row">
+							<div class="col-md-12 text-center">
+								<div class="tab" role="tabpanel">
+									<!-- Nav tabs -->
+									<ul class="nav nav-tabs" role="tablist">
+										{% for project in dev.projects %}
+                                            <li role="presentation" {% if forloop.first %}class="active"{% endif %}>
+                                                <a href="#{{project.id}}" aria-controls="home" role="tab" data-toggle="tab">{{project.name}}</a>
+                                            </li>
+                                        {% endfor %}
+									</ul>
+									<!-- Tab panes -->
+									<div class="tab-content tabs">
+										{% for project in dev.projects %}
+										<div role="tabpanel" class="tab-pane {% if forloop.first %}in active{% endif %}" id="{{project.id}}">
+											<a href="/housing/Buy/{{project.name}}"><img src="{{project.image.url}}" alt=""></a>
+										</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+
+                        <!-- <a href="#">
+                            <img src="img/news-1.webp" alt="">
+                        </a> -->
+                    </div>
+                  
+                </div>
+				{% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Feature Developers End-->
+
+ 
+
+	<!--Feature Projects-->
+	<section>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Featured Projects</h2>
+					<p>Exclusive showcase of top projects</p>
+					<div id="news-slider" class="owl-carousel">
+						{% for feature in features %}
+						<div class="post-slide">
+							<div class="post-img">
+								<a href="/housing/Buy/{{ feature.name }}"><img src="{{feature.image.url}}" alt="" class="green"></a>
+								<div class="category">{{feature.city}}</div>
+							</div>
+							<div class="post-review">
+								<div>
+								<h5><a href="/housing/Buy/{{ feature.name }}">{{feature.name}}</a></h5>
+								<p>by {{feature.developer_name}}</p>
+							</div>
+							<div>
+								<h6>{{feature.Configuration}}</h6>
+								
+								<p>{{ feature.address }}</p>
+							</div>
+								<div>
+									<h6> <a href="/housing/Buy/{{ feature.name }}">&#8377;{{ feature.price }}</a></h6>
+									
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Feature Projects End-->
+
+	<!-- Property Section -->
+	<section class="property-section">
+		<div class="container mt-5">
+			<div>
+				<h2>Recently Added</h2>
+				<p>Based on preferences of users like you</p>
+			</div>
+			<div class="row">
+				{% for recent in recents %}
+				<div class="col-lg-4">
+					<div class="property-item">
+						<!-- <span class="like-heart {% if recent.is_liked_by_user %}fas fa-heart{% else %}fa fa-heart{% endif %}" data-project-id="{{ recent.id }}"></span> -->
+						<div class="pi-image">
+							<a href="/housing/Buy/{{recent.name}}"><img src="{{recent.image.url}}" alt="" class="dge"></a>
+							<div class="pi-badge new">New</div>
+
+						</div>
+						<div class="lok">{{recent.name}}</div>
+						<div class="ment">{{recent.Configuration}}</div>
+					<div class="bowl">{{recent.address}}</div>
+						<div class="est">Price On request</div>
+						<!-- <a href="#" class="readmore-btn">Find out more</a> -->
+							<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#eamplemodAl{{recent.id}}">
+							Contact
+							  </button>
+							  <!-- Modal -->
+							  <div class="modal fade" id="eamplemodAl{{recent.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="most">
+										<i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+									</h5>
+							
+									  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="sel">
+										<h5>Contact seller</h5>
+										<div class="row">
+											<div class="col-md-3">
+												<div>
+													<img src="{{ recent.developers.image.url }}">
+												</div>
+											</div>
+											<div class="col-md-3">
+												<div>
+													<h6>{{recent.developers.developer_name}}</h6>
+													<p>Developer</p>
+													<h6>+9191957...</h6>
+												</div>
+											</div>
+										</div>
+										<div>
+											<h5>Please share Your Contact</h5>
+										</div>
+									</div>
+								   <div class="modal-body {% if forloop.first %} active{% endif %}">
+									<div class="container">
+									<form  method="POST" action="/housing/contact/" target="_blank">
+										{% csrf_token %}
+										<!-- <div class="form-floating mb-3">
+											<label for="floatingInput">Name</label> -->
+											<input type="text" class="form-control" name="name" id="xname" placeholder="Name" required>
+										<!-- </div>
+										<div class="form-floating mb-3">
+											<label for="floatingPassword">Phone</label> -->
+											<input type="number" class="form-control" name="phone_no" id="xname" placeholder="phone" required>
+										<!-- </div>
+										<div class="form-floating mb-3">
+											<label for="floatingInput">Email address</label> -->
+											<input type="email" class="form-control"  name= "email" id="xname" placeholder="name@example.com" required>
+										<!-- </div> -->
+										<input type="hidden" name="product_id" value="{{ recent.id }}">
+										<label class="check">
+											<input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+											<br><input type="checkbox" checked="checked" name="remember"> I am interested in home loans
+										</label>
+										<button type="submit" href="/housing/">Get contact Details</button>
+									</form>
+									</div>
+								</div>
+									<div class="modal-footer">
+									    <button type="button" class="btn btn-secondary" data-dismiss="modal">Get contact Details</button>
+									  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+									</div>
+								  </div>
+								</div>
+							  </div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!-- Property Section end -->
+
+	<!--Featured collections-->
+	<div class="container">
+        <div class="sec-title">
+            <h2><span>Featured</span>Collections</h2>
+            <p>Handpicked projects for you.</p>
+                
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="news-slider-25" class="owl-carousel">
+					{% for feature in feature_objects %}
+                    <div class="pst-slide">
+                        <div class="pst-img">
+                           <a href="/housing/collections/{{feature.id}}/"> <img src="{{feature.image.url}}" alt="" class="tered"></a>
+                            <div class="centered">
+                                <h6>{{feature.name}}</h6>
+                                <p>{{feature.Description}}</p>
+                            </div>
+                            <a href="/housing/collections/{{feature.id}}/" class="over-layer ties">
+                                <p>{{features_counts}}
+                            </br>Properties</p>
+                            </i></a>
+                        </div>
+                        <!-- <div class="pst-content">
+                            <h3 class="pst-title">
+                                <a href="#">Lorem ipsum dolor sit amet.</a>
+                            </h3>
+                            <p class="pst-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consectetur cumque dolorum, ex incidunt ipsa laudantium necessitatibus neque quae tempora......</p>
+                            <span class="pst-date"><i class="fa fa-clock-o"></i>Feb 7, 2016</span>
+                            <a href="" class="read-more">read more</a>
+                        </div> -->
+                    </div>
+					{% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+<!--trending projects-->
+	<div class="container mt-2">
+		<div class="row">
+			<div class="col-md-12 mt-5">
+				<h2>TRENDING PROJECTS</h2>
+				<P>Most sought-after projects in Hyderabad</P>
+				<div id="news-slider-4" class="owl-carousel">
+					{% for trend in trendings %}
+					<div class="post-slide">
+						<!-- <span class="like-heart {% if trend.is_liked_by_user %}fas fa-heart{% else %}fa fa-heart{% endif %}" data-project-id="{{ trend.id }}"></span> -->
+
+						<div class="post-img1">
+							<a href="/housing/Buy/{{ trend.name }}"><img src="{{trend.image.url}}" alt="" height="200px"></a>
+						</div>
+
+						<div class="post-review">
+							<div class="west">
+							<h5>{{trend.name}}</h5>
+							<p>by {{trend.developer_name}}</p>
+							<p>{{trend.Configuration}} {{trend.address}}</p>
+							<h6> &#8377;{{trend.price}}</h6>
+						</div>
+						</div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--trending projects end-->
+   
+	<!--Housing Experts-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Housing Experts</h2>
+				<p>Sellers with complete knowledge about locality and verified listings</p>
+				<div id="news-slider-5" class="owl-carousel">
+					{% for expert in experts %}
+					<div class="post-slide">
+						<div class="post-img2">
+						<a href="/housing/experts/{{expert.id}}/"><img src="{{ expert.image.url }}" alt="" class="img-responsive"></a>
+							<a href="/housing/experts/{{expert.id}}/" class="overlay resid">{{expert.developer_name|slice:"0:8"}}...</i></a>
+							<button class="house">Housing Expert</button>
+							<div>
+								<div class="flo">
+								<h6>&nbsp;&nbsp;&nbsp;&nbsp;{{ expert.established_year}}</h6>
+								<p>Experience</p>
+							</div>
+							<div class="righ">
+								<h6>|&nbsp;&nbsp;&nbsp;&nbsp;{{expert.total_projects}}</h6>
+								<p>&nbsp; Properties</p>
+							</div>
+							<div>
+								<ul class="miyapur">
+									<li><button class="mi" >{{expert.city}}</button></li>&nbsp;
+									<li><button class="mi">{{expert.area}}</button></li>&nbsp;
+									<!-- <li><button class="mi">Aminpur</button></li> -->
+								</ul>
+							</div>
+							
+
+						</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--map start-->
+	<div class="container mt-5">
+		<h2>Top Localities</h2>
+		<h5>Check out the top localities in Hyderabad</h5>
+		<div class="row mt-5">
+			<div class="col-md-12 text-center">
+				<div class="tab" role="tabpanel">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						{% for map in maps %}
+						<li role="presentation"{% if forloop.first %} class="active"{% endif %}>
+							<a href="#{{ map.map_location }}" aria-controls="home" role="tab" data-toggle="tab">{{ map.map_location }}</a>
+						</li>
+						{% endfor %}
+					</ul>
+					<!-- Tab panes -->
+					<div class="tab-content tabs">
+						{% for map in maps %}
+						<div role="tabpanel" class="tab-pane  {% if forloop.first %} in active {% endif %}" id="{{ map.map_location }}">
+							<iframe src="{{ map.lc_map }}" class="map" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--map Experts end-->
+	
+	
+
+	<!-- buttons and slider start -->
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>News & Articles</h2>
+				<p>Read what's happening in Real Estate</p>
+				<div id="news-sliderr" class="owl-carousel">
+					{% for residence in residences %}
+					<div class="postt-slide">
+						<a  href="/housing/details/{{residence.name}}"><img src="{{residence.image.url}}" alt=""></a>
+						<h3 class="postt-title">
+							<a class="resid" href="/housing/details/{{residence.name}}">{{residence.name|slice:"0:50"}}...</a>
+						</h3>
+						<p class="postt-description">
+							<a class="resid" href="/housing/details/{{residence.name}}">{{residence.description|slice:"0:199"|safe}}.. </a>
+						</p>
+						<!-- <a href="#" class="read-more">read more<i class="fa fa-chevron-right"></i></a> -->
+						<div class="container">
+							<div class="row">
+							<div class="col-md-6">
+								<p class="zint">{{residence.article_by}}</p>
+							</div>
+							<div class="col-md-6 dsk">
+								<p class="zint">{{residence.list_date.date}}</p>
+							</div>
+							
+						</div>
+					</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- buttons and slider start  end-->
+	
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+	
+
+ <script>
+$(document).ready(function() {
+    $("#news-slider").owlCarousel({
+        items:3,
+        itemsDesktop:[1199,3],
+        itemsDesktopSmall:[1000,2],
+        itemsMobile:[650,1],
+        pagination:false,
+        navigationText:false,
+		dots:true,
+        autoPlay:true
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    $("#news-slider-1").owlCarousel({
+        items :2
+		,
+        itemsDesktop:[1199,2],
+        itemsDesktopSmall:[980,2],
+        itemsTablet:[650,1],
+        pagination:false,
+        navigation:true,
+		dots:true,
+        navigationText:["",""],
+	
+    });
+});
+</script>
+<script>
+	$(document).ready(function() {
+		$("#news-slider-10").owlCarousel({
+			items :2
+			,
+			itemsDesktop:[1199,2],
+			itemsDesktopSmall:[980,2],
+			itemsTablet:[650,1],
+			pagination:false,
+			navigation:true,
+			navigationText:["",""],
+		
+		});
+	});
+	</script>
+<script>
+	$(document).ready(function() {
+    $("#news-slider-3").owlCarousel({
+        navigation : false,
+        pagination : false,
+        items : 3,
+        itemsDesktop:[1199,3],
+        itemsDesktopSmall:[980,2],
+        itemsMobile : [479,1],
+	
+    });
+});
+</script>
+<script>
+$(document).ready(function() {
+    $("#news-slider-4").owlCarousel({
+        items : 3,
+        itemsDesktop:[1199,2],
+        itemsDesktopSmall:[980,1],
+        itemsTablet: [600,1],
+        itemsMobile : [550,1],
+        pagination:true,
+        autoPlay:true
+    });
+});
+</script>
+<script>
+	$(document).ready(function() {
+    $("#news-slider-5").owlCarousel({
+        items : 4,
+        itemsDesktop:[1199,3],
+        itemsDesktopSmall:[980,2],
+        itemsMobile : [550,1],
+        pagination:false,
+        autoPlay:true
+    });
+});
+</script>
+
+<!-- buttons and sliders -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+ 
+ <script>
+$(document).ready(function() {
+    $("#news-sliderr").owlCarousel({
+        items : 3,
+        itemsDesktop:[1199,3],
+        itemsDesktopSmall:[980,2],
+        itemsMobile : [600,1],
+        navigation:true,
+        navigationText:["",""],
+        pagination:true,
+        autoPlay:true
+    });
+});
+</script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+  -->
+<script>
+$(document).ready(function() {
+    $("#news-slder").owlCarousel({
+        items : 3,
+        itemsDesktop : [1199,2],
+        itemsMobile : [600,1],
+        pagination :true,
+        autoPlay : true
+    });
+});
+</script>
+<script>
+	$(document).ready(function() {
+		$("#news-slderrr").owlCarousel({
+			items : 2,
+			itemsDesktop : [1199,2],
+			itemsMobile : [600,1],
+			pagination :true,
+			autoPlay : true
+		});
+	});
+	</script>
+	<script>
+		$(document).ready(function() {
+			$("#news-srrr").owlCarousel({
+				items : 2,
+				itemsDesktop : [1199,2],
+				itemsMobile : [600,1],
+				pagination :true,
+				autoPlay : true
+			});
+		});
+		</script>
+	 <script>
+        $(document).ready(function() {
+        $("#news-slider-25").owlCarousel({
+            items : 3,
+            itemsDesktop:[1199,3],
+            itemsDesktopSmall:[980,2],
+            itemsMobile : [600,1],
+            navigation:true,
+            navigationText:["",""],
+            pagination:true,
+            autoPlay:true
+        });
+    });
+    </script>
+<script>
+	// Get the canvas element
+	var canvas = document.getElementById("myCanvas");
+
+	// Get the 2D rendering context
+	var ctx = canvas.getContext("2d");
+
+	// Draw a red rectangle
+	ctx.fillStyle = "red";
+	ctx.fillRect(50, 50, 200, 100);
+
+	// Draw a blue circle
+	ctx.fillStyle = "blue";
+	ctx.beginPath();
+	ctx.arc(250, 250, 50, 0, 2 * Math.PI);
+	ctx.fill();
+</script>
+
+
+
+<script>
+    // getting all required elements
+    {
+const searchWrapper = document.querySelector(".search-input");
+const inputBox = searchWrapper.querySelector("input");
+const suggBox = searchWrapper.querySelector(".autocom-box");
+const icon = searchWrapper.querySelector(".icon");
+let linkTag = searchWrapper.querySelector("a");
+let webLink;
+
+// if user press any key and release
+inputBox.onkeyup = (e)=>{
+let userData = e.target.value; //user enetered data
+let emptyArray = [];
+if(userData){
+    icon.onclick = ()=>{
+        webLink = `https://www.google.com/search?q=${userData}`;
+        linkTag.setAttribute("href", webLink);
+        linkTag.click();
+    }
+    emptyArray = suggestions.filter((data)=>{
+        //filtering array value and user characters to lowercase and return only those words which are start with user enetered chars
+        return data.toLocaleLowerCase().startsWith(userData.toLocaleLowerCase());
+    });
+    emptyArray = emptyArray.map((data)=>{
+        // passing return data inside li tag
+        return data = `<li>${data}</li>`;
+    });
+    searchWrapper.classList.add("active"); //show autocomplete box
+    showSuggestions(emptyArray);
+    let allList = suggBox.querySelectorAll("li");
+    for (let i = 0; i < allList.length; i++) {
+        //adding onclick attribute in all li tag
+        allList[i].setAttribute("onclick", "select(this)");
+    }
+}else{
+    searchWrapper.classList.remove("active"); //hide autocomplete box
+}
+}
+
+function select(element){
+let selectData = element.textContent;
+inputBox.value = selectData;
+icon.onclick = ()=>{
+    webLink = `https://www.google.com/search?q=${selectData}`;
+    linkTag.setAttribute("href", webLink);
+    linkTag.click();
+}
+searchWrapper.classList.remove("active");
+}
+
+function showSuggestions(list){
+let listData;
+if(!list.length){
+    userValue = inputBox.value;
+    listData = `<li>${userValue}</li>`;
+}else{
+  listData = list.join('');
+}
+suggBox.innerHTML = listData;
+}
+}
+ </script>
+ <script>
+	$(function() {
+  $('.menu-click').click( function() {
+    $('.menu').toggleClass('open');
+  });
+  $("body").on("swipeleft", function() {
+    $('.menu').addClass('open');
+  });
+  $(".menu").on("swiperight", function() {
+    $('.menu').toggleClass('open');
+  });
+});
+ </script>
+ <script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+	
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		var panel = this.nextElementSibling;
+		if (panel.style.maxHeight) {
+		  panel.style.maxHeight = null;
+		} else {
+		  panel.style.maxHeight = panel.scrollHeight + "px";
+		} 
+	  });
+	}
+	</script>
+<script>
+	new Autocomplete('#autocomplete', {
+	  search: input => {
+		const url = `/housing/search/?query=${encodeURIComponent(input)}`
+		return new Promise(resolve => {
+		  fetch(url)
+			.then(response => response.json())
+			.then(data => {
+			  const addressSuggestions = data.payload.map(d => d.address);
+			  const citySuggestions = data.payload.map(d => d.city);
+			  const developerNameSuggestions = data.payload.map(d => d.developer_name);
+			  
+			  // Combine suggestions from both fields
+			  const combinedSuggestions = [...addressSuggestions, ...citySuggestions, ...developerNameSuggestions];
+			  
+			  console.log(combinedSuggestions);
+			  resolve(combinedSuggestions);
+			})
+		})
+	  },
+	  renderResult: (result, props) => {
+		let group = '';
+		if (result.index % 3 === 0) {
+		  group = `<li class="group">Group</li>`;
+		}
+		return `
+		${group}
+		<li ${props}>
+		  <div class="wiki-title">
+			${result}
+		  </div>
+		</li>
+		`;
+	  },
+	});
+  </script>
+
+<script>
+	$(document).ready(function() {
+		$('.like-heart').click(function(event) {
+			event.preventDefault();
+			var projectId = $(this).data('project-id');
+			var likeHeart = $(this);
+	
+			// Determine the action based on the current state
+			var action = likeHeart.hasClass('liked') ? 'unlike' : 'like';
+	
+			$.ajax({
+				type: 'POST',
+				url: '/housing/like_project/',
+				data: {
+					'project_id': projectId,
+					'action': action,
+					'csrfmiddlewaretoken': '{{ csrf_token }}'
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.success) {
+						// Toggle the appearance of the heart icon
+						likeHeart.toggleClass('liked');
+					} else {
+						console.log('Error:', data.error_message);
+					}
+				}
+			});
+		});
+	});
+	</script>
+
+
+	<!-- Add this script at the end of your HTML body or in a separate file -->
+
+
+
+<script>
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+   
+	for (i = 0; i < acc.length; i++) {
+	  acc[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		var panel = this.nextElementSibling;
+		if (panel.style.maxHeight) {
+		  panel.style.maxHeight = null;
+		} else {
+		  panel.style.maxHeight = panel.scrollHeight + "px";
+		}
+	  });
+	}
+	</script>
+	
+
+{% endblock %}

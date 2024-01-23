@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	
+
+	<!-- Single Property Section end -->
+	<section class="single-property-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="single-property mb-5">
+						<h2>{{ product_details.name|safe }}</h2>
+						<span class="date zint">{{ product_details.list_date.date }} &nbsp;/ By {{product_details.article_by }}</span><br>
+
+						<div class="mt-5">
+							<img src="{{ product_details.image.url}}" alt="">
+							<p class="zint">{{ product_details.main_title }}</p><br>
+
+
+						</div>
+						
+						<div class="property-text">
+							<h4>Description</h4>
+							<p>{{ product_details.description|safe}} </p>
+							
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	<!--  Section end -->
+
+
+
+	<section class="property-section">
+		<div class="container mt-5">
+			<div>
+				<h2>Related Posts</h2>
+			</div>
+			<div class="row">
+				{% for product in sources %}
+				<div class="col-lg-4">
+					<div class="property-item">
+						<div class="pi-image">
+							<a href="/details/{{product.name}}/"><img src="{{product.image.url}}" alt="" class="dge"></a>
+							<!-- <div class="pi-badge new">For Sale</div> -->
+						</div>
+						<a href="/details/{{product.name}}/"><div class="lok resid">{{product.name}}</div></a>
+						
+						<!-- <a href="#" class="readmore-btn">Find out more</a> -->
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style data-emotion-css="6yl0sf">
+</style>
+<div class="css-6yl0sf">
+	<style data-emotion-css="kmb448">
+	</style>
+	<div class="css-kmb448" style="background-image: url({{banners.image.url}});">
+		<style data-emotion-css="13c1cwa">
+		</style>
+		<div class="css-13c1cwa">
+			<style data-emotion-css="1cn7om3">
+			</style>
+			<h1 class="banner-title css-1cn7om3">Commercial Property for Sale & Rent in  <strong
+					class="bold">{{commercial_details.0.city}}</strong></h1>
+			<style data-emotion-css="ktu8be">
+			</style>
+			<!-- <div class="css-ktu8be">Parr...se Perfect</div> -->
+			<style data-emotion-css="cryaei">
+			</style>
+			<div class="search-wrap css-cryaei">
+				<style data-emotion-css="k008qs">
+				</style>
+				<nav data-q="service" class="css-k008qs">
+					<style data-emotion-css="1rcmzf8">
+					</style><a data-q="active" class="search-tab search-active-tab css-1rcmzf8"
+						href="/housing/" target="_self">Buy</a>
+					<style data-emotion-css="18w4akt">
+						
+					</style><a data-q="false" class="search-tab css-18w4akt"
+						href="/housing/rent/" target="_self">Rent</a>
+					<style data-emotion-css="167vrx2">
+						
+						
+					</style><a data-q="false" class="search-tab css-167vrx2"
+						href="/housing/commercial/"target="_self">Commercial</a><a
+						data-q="false" class="search-tab css-18w4akt" href="/housing/plots/"
+						target="_self">Plots</a>
+				</nav>
+				<style data-emotion-css="5pw9gy">
+					
+				</style>
+				<div class="search-box css-5pw9gy">
+					<style data-emotion-css="126ysyq">
+						
+						
+					</style>
+				
+				
+					<style data-emotion-css="1p9lys">
+						
+					</style>
+					<div data-q="search" class="css-1p9lys">
+						<style data-emotion-css="1om6f21">
+							
+						</style>
+						<form method="get"  action="/housing/property-search/">
+						<div id="autocomplete" >
+						<input type="text"
+							placeholder="Search for locality, landmark, project, or builder"
+							class="autocomplete-input"  name="query" value="" />
+							<style data-emotion-css="1ddin2y"> 
+							
+							</style><button class="cta  css-1ddin2y">Search</button>
+							<ul class="autocomplete-result-list"></ul>
+							
+						</div>
+						
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			<style data-emotion-css="56j96e">
+				
+			</style>
+			<div class="css-56j96e">
+				<style data-emotion-css="ibbbzb animation-8cmihf">
+					
+				</style>
+				<div class="css-ibbbzb"></div>
+				<style data-emotion-css="1igh16y">
+				
+				</style>  
+			 </div>
+		</div>
+	</div>
+</div>
+
+    <!--Rent page start-->
+    <div class="container case1">
+        <h4>Recently added properties <b>for Sale</b></h4>
+        <div class="row">
+			{% for props in commercial_details %}
+            <div class="col-md-4">
+                <div class="post-slide">
+                    <div class="post-img1">
+                        <a href="/housing/commercial/Features/{{props.name}}/"><img src="{{props.image.url}}" alt="" height="200px"></a>
+                    </div>
+                    <div class="post-review">
+
+                        <div class="west">
+
+							<a href="/housing/commercial/Features/{{props.name}}/"><h5>{{props.name}}</h5></a>
+                        <p>by {{props.developer_name}}</p>
+						<span class="like-heart {% if props.is_liked_by_user %}fas fa-heart{% else %}fa fa-heart{% endif %}" data-project-id="{{ props.id }}"></span>
+
+                        <p>{{props.Configuration}}</p>
+                        <p>{{props.address}}</p>
+                        <h6>&#8377; {{props.price}}</h6>
+                    </div>
+                    </div>
+                  
+                </div>
+            </div>
+			{% endfor %}
+        </div>
+    </div>
+    <!--Rent Page End-->
+     <!--sale page start-->
+     <div class="container mt-4">
+        <h4>Recently added properties <b>for rent</b></h4>
+        <div class="row">
+			{% for detail in commercial_objects %}
+            <div class="col-md-4">
+                <div class="post-slide">
+                    <div class="post-img1">
+                        <a href="/housing/commercial/Features/{{detail.name}}"><img src="{{detail.image.url}}" alt="" height="200px"></a>
+                    </div>
+                    <div class="post-review">
+                        <div class="west">
+							<a href="/housing/commercial/Features/{{detail.name}}"><h5>{{detail.name}}</h5></a>
+                        <p>by {{detail.developer_name}}</p>
+                        <p>{{detail.Configuration}}</p>
+                        <p>{{detail.address}}</p>
+                        <h6>&#8377; {{detail.price}}</h6>
+                    </div>
+                    </div>
+                  
+                </div>
+            </div>
+			{% endfor %}
+        </div>
+    </div>
+    <!--sale Page End-->
+    <!--Housing Experts start-->
+    <div class="container mt-3">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Housing Experts</h2>
+				<p>Sellers with complete knowledge about locality and verified listings</p>
+				<div id="news-slider-5" class="owl-carousel">
+					{% for expert in experts %}
+					<div class="post-slide">
+						<div class="post-img2">
+							<a href="/housing/commercial/commercialexperts/{{expert.id}}/"><img src="{{expert.image.url}}" alt="" class="img-responsive"></a>
+							<a href="/housing/commercial/commercialexperts/{{expert.id}}/" class="overlay resid">{{expert.developer_name|slice:"0:8"}}...</i></a><br>
+							<button class="house">Housing Expert</button>
+							<div>
+								<div style="float:left">
+								<h6>{{expert.established_year}}</h6>
+								<p>Experience</p>
+							</div>
+							<div style="float:left">
+								<h6>|&nbsp;&nbsp;{{expert.total_projects}}</h6>
+								<p>&nbsp;&nbsp;&nbsp;|&nbsp; Properties</p>
+							</div>
+							<div>
+								<ul class="miyapur">
+									<li><button class="mi" >{{expert.city}}</button></li>&nbsp;
+									<li><button class="mi">{{expert.area}}</button></li>&nbsp;
+								</ul>
+							</div>
+							
+
+						</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+    <!--Housing Experts  End-->
+    <!-- buttons and slider start -->
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>News & Articles</h2>
+				<p>Read what's happening in Real Estate</p>
+				<div id="news-sliderr" class="owl-carousel">
+					{% for residence in residences %}
+					<div class="postt-slide">
+						<a href="/housing/details/{{residence.name}}"><img src="{{residence.image.url}}" alt=""></a>
+						<!-- <div class="post-date">
+							<span class="month">Nov</span>
+							<span class="date">5</span>
+						</div> -->
+						<h3 class="postt-title">
+							<a href="/housing/details/{{residence.name}}">{{residence.name|slice:"0:50"|safe}}</a>
+						</h3>
+						<p class="postt-description">
+							<a class="resid" href="/housing/details/{{residence.name}}">{{residence.description|slice:"0:199"|safe}}..</a>
+						</p>
+						<!-- <a href="#" class="read-more">read more<i class="fa fa-chevron-right"></i></a> -->
+						<div class="container">
+							<div class="row">
+							<div class="col-md-6">
+								<p class="zint">{{residence.article_by}}</p>
+							</div>
+							<div class="col-md-6 dsk">
+								<p class="zint">{{residence.list_date.date}}</p>
+							</div>
+							
+						</div>
+					</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			  
+		</div>
+	</div>
+
+	
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+    <script>
+		$(document).ready(function() {
+		$("#news-slider-5").owlCarousel({
+			items : 4,
+			itemsDesktop:[1199,3],
+			itemsDesktopSmall:[980,2],
+			itemsMobile : [550,1],
+			pagination:false,
+			autoPlay:true
+		});
+	});
+	</script>
+
+
+<script>
+	new Autocomplete('#autocomplete', {
+	  search: input => {
+		const url = `/housing/search/?query=${encodeURIComponent(input)}`
+		return new Promise(resolve => {
+		  fetch(url)
+			.then(response => response.json())
+			.then(data => {
+			  const addressSuggestions = data.payload.map(d => d.address);
+			  const citySuggestions = data.payload.map(d => d.city);
+			  const developerNameSuggestions = data.payload.map(d => d.developer_name);
+			  
+			  // Combine suggestions from both fields
+			  const combinedSuggestions = [...addressSuggestions, ...citySuggestions, ...developerNameSuggestions];
+			  
+			  console.log(combinedSuggestions);
+			  resolve(combinedSuggestions);
+			})
+		})
+	  },
+	  renderResult: (result, props) => {
+		let group = '';
+		if (result.index % 3 === 0) {
+		  group = `<li class="group">Group</li>`;
+		}
+		return `
+		${group}
+		<li ${props}>
+		  <div class="wiki-title">
+			${result}
+		  </div>
+		</li>
+		`;
+	  },
+	});
+  </script>
+  
+    <script>
+		$(document).ready(function() {
+			$("#news-sliderr").owlCarousel({
+				items : 3,
+				itemsDesktop:[1199,3],
+				itemsDesktopSmall:[980,2],
+				itemsMobile : [600,1],
+				navigation:true,
+				navigationText:["",""],
+				pagination:true,
+				autoPlay:true
+			});
+		});
+		</script>
+		<script>
+			// Get the canvas element
+			var canvas = document.getElementById("myCanvas");
+		
+			// Get the 2D rendering context
+			var ctx = canvas.getContext("2d");
+		
+			// Draw a red rectangle
+			ctx.fillStyle = "red";
+			ctx.fillRect(50, 50, 200, 100);
+		
+			// Draw a blue circle
+			ctx.fillStyle = "blue";
+			ctx.beginPath();
+			ctx.arc(250, 250, 50, 0, 2 * Math.PI);
+			ctx.fill();
+		</script>
+		<script>
+			$(function() {
+		  $('.menu-click').click( function() {
+			$('.menu').toggleClass('open');
+		  });
+		  $("body").on("swipeleft", function() {
+			$('.menu').addClass('open');
+		  });
+		  $(".menu").on("swiperight", function() {
+			$('.menu').toggleClass('open');
+		  });
+		});
+		 </script>
+
+
+<script>
+	$(document).ready(function() {
+		$('.like-heart').click(function(event) {
+			event.preventDefault();
+			var projectId = $(this).data('project-id');
+			var likeHeart = $(this);
+	
+			// Determine the action based on the current state
+			var action = likeHeart.hasClass('liked') ? 'unlike' : 'like';
+	
+			$.ajax({
+				type: 'POST',
+				url: '/housing/commercial_like_project/',
+				data: {
+					'project_id': projectId,
+					'action': action,
+					'csrfmiddlewaretoken': '{{ csrf_token }}'
+				},
+				dataType: 'json',
+				success: function(data) {
+					if (data.success) {
+						// Toggle the appearance of the heart icon
+						likeHeart.toggleClass('liked');
+					} else {
+						console.log('Error:', data.error_message);
+					}
+				}
+			});
+		});
+	});
+	</script>
+
+
+ {% endblock %}

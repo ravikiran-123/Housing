@@ -1,0 +1,1494 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+    <!--GHR Gallistro -->
+    <div class="container">
+    <div class="container mt-5" id="sectionOne">
+      
+        <div class="row">
+            <div class="col-md-6">
+                <div class="corner">
+                <h2 class="stone1">{{ project_details.name }}</h2>
+                By <a  href="/housing/developers/{{project_details.developers.id}}/">{{ project_details.developer_name }}</a>
+                <P>{{ project_details.address }}</P>
+            </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="start">
+                    <h3 class="stone">&#8377; {{ project_details.price }}</h3>|<span class="avgprice">&#8377; {{project_details.Avg_price}}</span><br>
+                    <button type="button" class="contact" data-bs-toggle="modal" data-bs-target="#epemo"><i class="bi bi-telephone"></i>
+                      Contact Developer
+                     </button>
+                 
+                   <!--modal-->
+                  <div class="modal fade" id="epemo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="most">
+                              <i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+                          </h5>
+                  
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div>
+                              <h5 class="sel">Contact Developer</h5>
+                              <div class="row">
+                                 <div class="col-md-3 pd-5">
+                              <div>
+                                 &nbsp;&nbsp;<img src="{{project_details.logo_image.url}}">
+                              </div>
+                             </div>
+                             <div class="col-md-3">
+                              <div>
+                                 <h6>{{project_details.name}}</h6>
+                                 <p>Developer</p>
+                                 <h6>+9191957...</h6>
+                              </div>
+                             </div>
+                             </div>
+                             <div>
+                                 <h5 class="sel">Please share Your Contact</h5>
+                             </div>
+                         </div>
+                          <div class="modal-body">
+                            <div class="container">
+                              <form  method="POST" action="/housing/contact/" target="_blank">
+                                  {% csrf_token %}
+                                  <!-- <div class="form-floating mb-3"> -->
+                                      <!-- <label for="floatingInput">Name</label> -->
+                                      <input type="text" class="form-control" name="name" id="xname" placeholder="Name" required>
+                                  <!-- </div> -->
+                                  <!-- <div class="form-floating mb-3">
+                                      <label for="floatingPassword">Phone</label> -->
+                                      <input type="number" class="form-control" name="phone_no" id="xname" placeholder="phone" required>
+                                  <!-- </div> -->
+                                  <!-- <div class="form-floating mb-3">
+                                      <label for="floatingInput">Email address</label> -->
+                                      <input type="email" class="form-control"  name= "email" id="xname" placeholder="name@example.com" required>
+                                  <!-- </div> -->
+                                      <input type="hidden" name="product_id" value="{{ project_details.id }}">
+
+                                  <label class="check">
+                                      <input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+                                      <br><input type="checkbox" checked="checked" name="remember"> I am interested in home loans
+                                  </label>
+                                  <button type="submit" href="/housing/">Get contact Details</button>
+                              </form>
+                              </div>
+                  
+                          </div>
+                          <!-- <div class="modal-footer">
+                            <button type="button" class="button30" data-dismiss="modal">Get Contact Details</button> -->
+                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                    </div>
+                        <!-- <a href="">EMI starts at Rs51.01k</a> -->    
+            </div>
+        </div>
+        </div>
+    </div>
+<!--images part-->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+        <img class="san" src="{{ project_details.image.url }}">
+    </div>
+   
+    <div class="col-md-4">
+      <div>
+        {% for gallery in project_details.gallery_set.all %}
+        <img class="sand" src="{{ gallery.image.url }}">
+        {% endfor %}
+      </div>  
+    </div>
+  
+</div>
+<!--images part end-->
+
+  <div class="container mt-2">
+  <div class="row">
+    <div class="col-md-3">
+        <div class="apat">
+      <p>  {{project_details.Configuration}}</p>
+       <p> Configurations</p>
+     </div>
+    </div>
+    <div class="col-md-3">
+        <div class="apart">
+       <p> ₹{{project_details.Avg_price}}</p>
+         <p>Avg. Price</p>
+        </div>
+    </div>
+  
+</div>
+</div>
+</div>
+
+<nav class="sticky navbar">
+	<label for="nav" class="nav__open"></label>
+	<div class="nav">
+		<ul class="nav__items">
+			<li class="nav-item curr">
+        <a class="nav-link active one" aria-current="page" href="#sectionOne">Overview</a>
+      </li>
+      <li class="nav-item curr">
+        <a class="nav-link one" aria-current="page" href="#high">Highlights</a>
+      </li>
+      <li class="nav-item curr">
+        <a class="nav-link one" aria-current="page" href="#section">Master Plan</a>
+      </li>
+      <li class="nav-item curr">
+        <a class="nav-link one" href="#moreaboutproject">More About Project</a>
+      </li>
+      <li class="nav-item curr">
+        <a class="nav-link one" href="#floorplan">Floor Plan</a>
+      </li>
+      <li class="nav-item curr">
+        <a class="nav-link one" href="#ups">Project Ups</a>
+      </li>
+
+      <li class="nav-item curr">
+        <a class="nav-link one" href="#amenities">Amenities</a>
+      </li>
+      <li class="nav-item curr">
+        <a class="nav-link one" href="#brochure">Brochure</a>
+      </li>
+      
+      <li class="nav-item curr">
+          <a class="nav-link one" href="#locality">Location</a>
+        </li>
+        <li class="nav-item curr">
+          <a class="nav-link one" href="#developer">Similar Projects</a>
+        </li>
+        <li class="nav-item curr">
+          <a class="nav-link one" href="#faq">FAQs</a>
+        </li>
+		</ul>
+	</div>
+</nav>
+
+
+
+
+<div class="container mt-5 bg-light" id="high">
+     <div class="row">
+        <div class="col-md-8">
+            <div class="tab-content">
+                <div class="tabs__tab active" id="tab_1" data-tab-info>
+                  <h3><b>Why {{project_details.name}}</b></h3>
+                    <div class="ghr">
+                        <p class="cor">{{ project_details.description|safe}}</p>
+                        <!-- <button onclick="myFunction()" id="myBtn">Read more</button> -->
+                    </div>
+                </div>
+            </div>
+            <div class="container " id="section">
+                      <div class="row">
+                        <div class="col-md-12 ">
+                          <h3><b>Master Plan</b></h3>
+            
+              <div id="demoo" class="carousel slide" data-bs-ride="carousel" data-interval="500">
+                <div class="carousel-inner" data-bs-toggle="modal" data-bs-target="#ymol" style="width:100%">
+                  <div class="carousel-item active carout">
+                    <img src="{{project_details.masterplan.url}}" alt="Los Angeles" class="d-block shoa" style="width:100%">
+                  </div>
+                </div>
+              </div>
+            
+            
+            <!-- The Modal -->
+            <div class="modal fade" id="ymol">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+            
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <!-- <h4 class="modal-title">Modal Heading</h4> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+            
+                  <!-- Modal body -->
+                  <div class="modal-body mode">
+                    <div id="deoss" class="carousel slide" data-bs-ride="carousel" data-interval="500">
+                      <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active carout">
+                          <img src="{{project_details.masterplan.url}}" alt="Los Angeles" class="l-block geles" style="width:100%">
+                        </div>
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+            
+                  <!-- Modal footer -->
+                </div>
+              </div>
+            </div>
+            <!-- </div>
+            </div> -->
+              </div>
+              </div>
+            </div>
+
+
+<div class="container" id="moreaboutproject">
+                     <div class="row">
+                     <div class="tab-content">
+                    <div class="tabs__tab active" id="tab_2" data-tab-info>
+            <div class="col-md-12 mt-2">
+              <h3><b>More About {{project_details.property_name}}</b></h3>
+              <div class="row mt-5">
+                {% for detail in project_details.details_set.all %}
+                <div class="col-md-4">  
+                    <div>
+                 <h5 class="pro"> <i class="bi bi-textarea"></i>{{ detail.name }}</h5>
+                 <p class="acres">{{ detail.description }}</p>
+             </div>
+              </div>
+              {% endfor %}
+            </div>
+            </div>
+        </div>
+        </div>
+       
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                      
+      <button type="button" class="clip" data-bs-toggle="modal" data-bs-target="#myModal">
+        <i class="bi bi-heart"></i>&nbsp;&nbsp save
+      </button>
+    
+      <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+           
+            <h6 class="modal-title"> <i class="bi bi-house use"></i><br>
+                You trusted Real Estate Partner
+            </h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+           <form>
+            <label for="fname">Enter phone number</label><br>
+            <input type="tel" id="yname" name="lname" placeholder=" Phone Number"><br>
+             <p class="nue"><button class="btn10">Continue</button></p>
+             <p class="or">or connect with</p>
+             <a href="#" class="fa fa-google goog"></a>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+                
+                <div class="col-md-4">
+                    <button type="button" class="clip" data-bs-toggle="modal" data-bs-target="#amp">
+                        Ask for Details
+                          </button>
+                          <!-- Modal -->
+							  <div class="modal fade" id="amp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+								  <div class="modal-content">
+									<div class="modal-header">
+									  <h5 class="modal-title" id="most">
+										<i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+									</h5>
+							
+									  <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									  </button>
+									</div>
+									<div class="sel">
+										<h5>Contact seller</h5>
+										<div class="row">
+										   <div class="col-md-3">
+										<div>
+										   &nbsp;&nbsp;<img src="{{project_details.logo_image.url}}">
+										</div>
+									   </div>
+									   <div class="col-md-3">
+										<div>
+										   <h6>{{project_details.name}}</h6>
+										   <p>Developer</p>
+										   <h6>+9191957...</h6>
+										</div>
+									   </div>
+									   </div>
+									   <div>
+										   <h5>Please share Your Contact</h5>
+									   </div>
+								   </div>
+									<div class="modal-body">
+										<div class="container">
+                      <form  method="POST" action="/housing/contact/" target="_blank">
+                          {% csrf_token %}
+                          <!-- <div class="form-floating mb-3">
+                              <label for="floatingInput">Name</label> -->
+                              <input type="text" class="form-control" name="name" id="xname" placeholder="Name" required>
+                          <!-- </div>
+                          <div class="form-floating mb-3">
+                              <label for="floatingPassword">Phone</label> -->
+                              <input type="number" class="form-control" name="phone_no" id="xname" placeholder="phone" required>
+                          <!-- </div>
+                          <div class="form-floating mb-3">
+                              <label for="floatingInput">Email address</label> -->
+                              <input type="email" class="form-control"  name= "email" id="xname" placeholder="name@example.com" required>
+                          <!-- </div> -->
+                          <input type="hidden" name="product_id" value="{{ project_details.id }}">
+
+                          <label class="check">
+                              <input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+                              <br><input type="checkbox" checked="checked" name="remember"> I am interested in home loans
+                          </label>
+                          <button type="submit" href="/housing/">Get contact Details</button>
+                      </form>
+                      </div>
+							
+									</div>
+								  </div>
+								</div>
+							  </div>
+    
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+        <!-- <div class="container" id="master">
+            <div class="row">
+            
+                <div class="col-md-12">
+                    <h3>About GHR Callisto</h3>
+                    <div class="tab-content">
+                        <div class="tabs__tab active" id="tab_1" data-tab-info>
+                            <div class="ghr">
+                            <p>GHR Callisto is the epitome of a premium living merged with sustainability.
+                           <span id="dot">...</span><span id="mor"> What makes it distinct from other real estate brands are the smart homes built in gated communities away from the concrete jungle.</p>
+                            <button onclick="myFuncion()" id="myBt" class="tome">Show more About project Read more</button>
+                        </div>
+                        </div>
+                        </div>
+                </div>
+            </div>
+        </div> -->
+        
+    <!--Floor start -->
+    <div class="container mt-5" id="floorplan">
+            
+            <div class="row">
+                <div class="tab-content">
+                    <div class="tabs__tab active" id="tab_4" data-tab-info>
+                         <div class="col-md-12 mb-5">
+                            <h3><b>{{project_details.name}} Floor Plan</b></h3>
+                        </div> 
+                         <div class="tab" role="tabpanel">
+                          
+                        <ul class="nav nav-tbs" role="tablist">
+                          {% for config, sq_ft_data in floorplans.items %}
+                          <li role="presentation"><a href="#{{ config|slugify }}" aria-controls="home" role="tab" data-toggle="tab">{{ config }}</a></li>
+                          {% endfor %}
+                        </ul>
+                        
+                        <div class="tab-content tabs">
+                          {% for config, sq_ft_data in floorplans.items %}
+                          <div role="tabpanel" class="tab-pane  {% if forloop.first %}active{% endif %}" id="{{ config|slugify }}">
+                            <ul class="nav nav-tbs" role="tablist">
+                              {% for sq_ft, images in sq_ft_data.items %}
+                                <li role="presentation"><a href="#{{ config|slugify }}_{{ sq_ft|slugify }}" aria-controls="home" role="tab" data-toggle="tab">{{ sq_ft }}</a></li>
+                              {% endfor %}
+                              </ul>
+
+                            <div class="tab-content tabs">
+                              {% for sq_ft, images in sq_ft_data.items %}
+                            <div role="tabpanel" class="tab-pane {% if forloop.first %}active{% endif %}" id="{{ config|slugify }}_{{ sq_ft|slugify }}">
+                                <div class="container mt-3">
+                                  <div id="dem_{{ config|slugify }}_{{ sq_ft|slugify }}" class="carousel slide" data-bs-ride="carousel" data-interval="500">
+                                    <div class="carousel-inner" data-bs-toggle="modal" data-bs-target="#{{ sq_ft|slugify }}" style="width:100%">
+                                      
+                                      <div class="carousel-item active carout">
+                                        {% for image_url in images %}
+                                        <img src="{{ image_url }}" alt="dem_{{ config|slugify }}_{{ sq_ft|slugify }}" class="d-block sho" style="width:100%">
+                                        {% endfor %}
+                                      </div>
+                                      
+                                    </div>
+                                  </div>
+                                <!-- The Modal -->
+                                <div class="modal fade" id="{{ sq_ft|slugify }}">
+                                  <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                      <!-- Modal Header -->
+                                      <div class="modal-header">
+                                        <!-- <h4 class="modal-title">Modal Heading</h4> -->
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                      </div>
+                                
+                                      <!-- Modal body -->
+                                      <div class="modal-body mode">
+                                        <div id="dem_{{ config|slugify }}_{{ sq_ft|slugify }}" class="carousel slide" data-bs-ride="carousel" data-interval="500">
+                                
+                                          <!-- Indicators/dots -->
+                                          
+                                          
+                                          <!-- The slideshow/carousel -->
+                                          <div class="carousel-inner" role="listbox">
+                                            {% for image_url in images %}
+                                            <div class="carousel-item {% if forloop.first %}active{% endif %} carout">
+                                              
+                                              <img src="{{image_url}}" alt="Los Angeles" class="l-block geles" style="width:100%">
+                                            </div>
+                                               
+                                          </div>
+                                          {% endfor %}
+                                          
+                                          <!-- Left and right controls/icons -->
+                                          <!-- <button class="carousel-control-prev" type="button" data-bs-target="#dem_{{ config|slugify }}_{{ sq_ft|slugify }}" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon"></span>
+                                          </button>
+                                          <button class="carousel-control-next" type="button" data-bs-target="#dem_{{ config|slugify }}_{{ sq_ft|slugify }}" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon"></span>
+                                          </button> -->
+                                        </div>
+                                        
+                                      </div>
+                                
+                                      <!-- Modal footer -->
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+						</div>
+            {% endfor %}
+            
+						
+						
+					</div>
+				</div> 
+      </div>
+    </div>
+    </div>
+    </div>
+    <!--floor end-->
+        
+       
+
+    <!--------->
+    <div class="container mt-5" id="tour">
+        <h2>Tour sunshine Destino:photos and Videos</h2>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <iframe width="200" height="120" src="{{project_details.video}}" title="Housing.com- Home Seller Ad ft Manoj Bajpayee" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-4">
+                <img src="{{project_details.video_image.url}}" width="200" height="120">
+             </div>
+            </div>
+        </div>
+
+    <!-------->
+    
+    
+    <!----Amenities---->
+    <div class="container mt-5" id="amenities">
+        <h3><b>{{ project_details.amenities_name}}</b></h3>
+        <div class="row mt-5 text-center">
+          {% for amenity in project_details.amenities_set.all %}
+        <div class="col-md-2">
+            <img class="amen" src="{{amenity.image.url}}">
+            <p>{{ amenity.name }}</p>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+    <!--Amenities End-->
+    
+    <!--Brochure-->
+    
+        <div class="container-fluid p0 mt-3 "id="brochure">
+            <h3><b>{{project_details.name}}-Brochure</b></h3>
+            <div class="row mt-3">
+                <div class="col-sm-6 col-lg-6 p0">
+                    <div class="row m0 mb-3">
+                        <div class="col-lg-12 p0">
+                            <div class="popup-images">
+                                
+                                    <img class="img-fluid w100 sti" src="{{ project_details.brouchure_image1.url }}" alt="img">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-6 p0">
+                    <div class="row m0">
+                        <div class="col-sm-6 col-lg-6 p0">
+                            <div class="popup-images">
+                                
+                                    <img class="img-fluid w100 sti" src="{{ project_details.brouchure_image2.url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 p0">
+                            <div class="popup-images">
+                                <img class="img-fluid w100 sti" src="{{ project_details.brouchure_image3.url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 p0">
+                            <div class="popup-images">
+                                <img class="img-fluid w100 sti" src="{{ project_details.brouchure_image4.url }}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-lg-6 p0">
+                            <div class="popup-images">
+                                <img class="img-fluid w100 sti" src="{{ project_details.brouchure_image5.url }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+            <button type="button" class="button23" data-bs-toggle="modal" data-bs-target="#pemodAl">
+                <i class="fa fa-download" aria-hidden="true"></i>&nbsp;&nbsp Download Brochure
+              </button>
+            </div>
+              <!-- Modal -->
+              <div class="modal fade" id="pemodAl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="most">
+                        <i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+                    </h5>
+            
+                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="text-center">
+                        <h5>Contact seller</h5>
+                        <div class="row">
+                           <div class="col-md-6 pd-5">
+                        <div>
+                           &nbsp;&nbsp;<img src="{{ project_details.logo_image.url}}">
+                        </div>
+                       </div>
+                       <div class="col-md-6">
+                        <div>
+                           <h6>{{ project_details.name}}</h6>
+                           <p>Developer</p>
+                           <h6>+9191957...</h6>
+                        </div>
+                       </div>
+                       </div>
+                       <div>
+                           <h5>Please share Your Contact</h5>
+                       </div>
+                   </div>
+                    <div class="modal-body">
+                      <div class="container">
+                        <form method="POST" action="/housing/download_brochure/" target="_blank">
+                            {% csrf_token %}
+                            <input type="hidden" name="form_type" value="download-brochure" required>
+                            <!-- <div class="form-floating mb-3"> -->
+                                <!-- <label for="floatingInput">Name</label> -->
+                                <input type="text" class="form-control" id="xname" name="name" placeholder="Name" required>
+                            <!-- </div> -->
+                            <!-- <div class="form-floating mb-3">
+                                <label for="floatingPassword">Phone</label> -->
+                                <input type="number" class="form-control" id="xname" name="mobile_number" placeholder="phone">
+                            <!-- </div> -->
+                            <!-- <div class="form-floating mb-3">
+                                <label for="floatingInput">Email address</label> -->
+                                <input type="email" class="form-control" id="xname" name="email" placeholder="name@example.com">
+                            <!-- </div> -->
+                            <!-- <input type="text" id="yname" name="email" placeholder="Email" required><br>
+                            <input type="tel" id="yname" name="mobile_number" placeholder=" Phone Number" required><br> -->
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required><br>
+                            <input type="hidden" name="product_id" value="{{ project_details.id }}">
+                            <label for="vehicle1" class="group"> I agree to be contacted by Housing via
+                              whatsapp,sms,phone email,etc..<br>
+                              <!-- <br><input type="checkbox" checked="checked" name="remember"> I am intrested in home loans</label> -->
+                            <button class="btn bg-warning text-dark" type="submit" id="link-with-redirect">Download Brochure</button>
+                          </form>
+                    </div>
+            
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="button30" data-dismiss="modal">Download Brochure</button> -->
+                      <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+      <!-- brochure end-->
+      <!---Map view-->
+      <div class="container mt-5 "id="locality">
+        <div class="row">
+            <h3>Explore Neighbourhood-Map View</h3>
+            <div class="col-md-8 mt-4">
+                <iframe src="{{ project_details.lc_map }}" class="map" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+      </div>
+      <!---Map view end-->
+    
+      <!--locality Guide-->
+      <!-- <div id="localit"> -->
+      <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="guide">
+                    <h3><b>Locality Guide</b></h3>
+                    <p>for {{project_details.address}}</p>
+                </div>
+                <!-- <div class="frnd">
+                    <button onclick="myFunctio()" class="clip"><i class="bi bi-share"></i>&nbsp;&nbspShare</button>
+                    <div id="my">
+                        <h5>share with your family & friends</h5>
+                        <ul class="social">
+                            <li><i class="bi bi-clipboard"></i><a href="">&nbsp;&nbspcopy to clipboard</a></li>
+                            <li><i class="bi bi-facebook"></i><a href="">&nbsp;&nbspFacebook</a></li>
+                            <li><i class="bi bi-envelope"></i><a href="">&nbsp;&nbspMail</a></li>
+                            <li><i class="bi bi-twitter"></i><a href="">&nbsp;&nbspTwitter</a></li>
+                        </ul>
+                      
+                        </div>
+                </div> -->
+    
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                <div class="cal">
+                    <iframe width="300" height="250" src="{{project_details.locality_video}}" title="Introducing A2A Homeland - A Sanctuary of your own in Balanagar!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                </div>
+            </div>
+            <p class="sque">{{project_details.locality_description}}<a href="#"></a></p>
+        </div>
+      </div>
+      <!--locality guide end-->
+
+
+        <!--ratings and reviews-->
+
+       <!-- <div class="container-fluid mt-3">
+        <h3>Ratings and Reviews</h3>
+        <p>Read what locals Have to say...</p>
+        <div class="row">
+            <div class="col-md-12">
+                <div id="news-slider-26" class="owl-carousel">
+                    <div class="ost-slide">
+                        <div class="card">
+                        <div class="ost-img"> -->
+                            <!-- <span class="over-layer"></span>
+                            <img src="img/frame-1.webp" alt=""> -->
+                            <!-- <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="img/frame-1.webp"alt="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>Jabar</h4>
+                                        <p class="than">Broker|more than a month ago</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="#" class="rate">5*</a>
+    
+                                    </div>
+                                </div>
+                               </div>
+                        </div>
+                        <div>
+                            
+                                <p class="than">Good area with great development. Nice for residen..<a href="#">Readmore</a></p>
+                        </div>
+                        </div>
+                    </div>
+     
+                    <div class="ost-slide">
+                        <div class="card">
+                        <div class="ost-img"> -->
+                            <!-- <span class="over-layer"></span>
+                            <img src="img/frame-1.webp" alt=""> -->
+                            <!-- <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="img/frame-2.png">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>Jabar</h4>
+                                        <p class="than">Broker|more than a month ago</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="#" class="rate">5*</a>
+    
+                                    </div>
+                                </div>
+                               </div>
+                        </div>
+                        <div>
+                            
+                                <p class="than">Good area with great development. Nice for residen..<a href="#">Readmore</a></p>
+                        </div>
+                        </div>
+                    </div>
+     
+                    <div class="ost-slide">
+                        <div class="card">
+                        <div class="ost-img"> -->
+                            <!-- <span class="over-layer"></span>
+                            <img src="img/frame-1.webp" alt=""> -->
+                            <!-- <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="img/frame-1.webp">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>Jabar</h4>
+                                        <p class="than">Broker|more than a month ago</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="#" class="rate">5*</a>
+    
+                                    </div>
+                                </div>
+                               </div>
+                        </div>
+                        <div>
+                            
+                                <p class="than">Good area with great development. Nice for residen..<a href="#">Readmore</a></p>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="ost-slide">
+                        <div class="card">
+                        <div class="ost-img"> -->
+                            <!-- <span class="over-layer"></span>
+                            <img src="img/frame-1.webp" alt=""> -->
+                            <!-- <div class="container mt-2">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img src="img/frame-1.webp">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4>Jabar</h4>
+                                        <p class="than">Broker|more than a month ago</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="#" class="rate">5*</a>
+    
+                                    </div>
+                                </div>
+                               </div>
+                        </div>
+                        <div>
+                            
+                                <p class="than">Good area with great development. Nice for residen..<a href="#">Readmore</a></p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+      
+       <!--ratings and reviews end-->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="here">&nbsp;&nbspWhat is Good Here</h3>
+                <ul class="main">
+                   <li> Residents of Kollur can reach a number of economic regions s... <a href="#" class="reach">more</a></li>
+                   <li>Kolluru has a rich network of international schools that foc... <a href="#" class="reach">more</a></li>
+                   <li>Kollur is a microcosm of tradition and modern values and has...<a href="#" class="reach">more</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3 class="expo">&nbsp;&nbspWhat can be Better</h3>
+                <ul class="main">
+                    <li>Traffic congestion is mainly due to the exponential increase... <a href="#" class="reach">more</a></li>
+                    <li>An increase in metro population is bursting the train infras... <a href="#" class="reach">more</a></li>
+                    <li>Premium parking spaces are available for high paying individ...<a href="#" class="reach">more</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div class=" text-center  mt-3">
+    <a href="#" class="know">Know More About Kollur ></a>
+    
+    </div> -->
+    <!-- </div> -->
+    <!--Developer start-->
+    <!-- <div id="developr"> -->
+    <div class="container mt-3">
+        <div class="row">
+            <h3><b>{{developers.developer_name}} Information</b></h3>
+            <div>
+                <div class="row">
+                   <div class="col-md-3">
+                <div class="hold">
+                <img src="{{developers.image.url}}">
+                </div>
+               </div>
+               <div class="col-md-4 mt-5">
+               <h4>{{project_details.name}}</h4>
+               <div class="row mt-3">
+                   <div class="col-lg-6">
+                 <h5>{{developers.established_year}}</h5>
+                 <p class="shed">Established in</p>
+                </div>
+                <div class="col-lg-6">
+                    <h5>{{developers.total_projects}}</h5>
+                    <p class="shed">Total Projects</p>
+    
+                </div>
+                </div>
+               </div>
+               </div>
+               <!-- <div class="hol">
+                   <h5>{{project_details.name}}</h5>
+                   <a href="#" class="know">Read More</a>
+               </div> -->
+           </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <h6>possession Status :</h6>
+            </div>
+            <div class="col-md-9">
+                <div class="tab" role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-ts" role="tablist">
+                      <li role="presentation" class="active ars"><a href="#ready-to-move" aria-controls="ready-to-move" role="tab" data-toggle="tab">Ready to move</a></li>
+                      <li role="presentation"><a href="#in-3-years" aria-controls="in-3-years" role="tab" data-toggle="tab">In 3 years</a></li>
+                      <li role="presentation"><a href="#beyond-3-years"  aria-controls="beyond-3-years" role="tab" data-toggle="tab">Beyond 3 years</a></li>
+                  </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content tabs mt-4">
+                        <div role="tabpanel" class="tab-pane  in active" id="ready-to-move">
+                          {% if ready_to_move_projects %}
+                          {% for project in ready_to_move_projects %}
+                                <div class="col-md-6">
+                                    <img src="{{project.image.url}}">
+                                    
+                                    <h4><b>{{project.name}}</b></h4>
+                                    <h6>&#8377;{{project.price}}</h6>
+                                    <p class="les">{{project.Configuration}}</p>
+                                    <p class="les"> {{project.address}}</p>
+                                    <!-- <button class="button15">contact</button> -->
+                                    <button type="button" class="button15" data-bs-toggle="modal" data-bs-target="#epemod">
+                                        Contact
+                                       </button>
+                                   
+                                     <!--modal-->
+                                    <div class="modal fade" id="epemod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="most">
+                                                <i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+                                            </h5>
+                                    
+                                              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="text-center">
+                                                <h5>Contact seller</h5>
+                                                <div class="row">
+                                                   <div class="col-md-6 pd-5">
+                                                <div>
+                                                   &nbsp;&nbsp;<img src="{{project.logo_image.url}}">
+                                                </div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                <div>
+                                                   <h6>{{project.name}}</h6>
+                                                   <p>Developer</p>
+                                                   <h6>+9191957...</h6>
+                                                </div>
+                                               </div>
+                                               </div>
+                                               <div>
+                                                   <h5>Please share Your Contact</h5>
+                                               </div>
+                                           </div>
+                                            <div class="modal-body">
+                                              <div class="container">
+                                                <form  method="POST" action="/housing/contact/" target="_blank">
+                                                    {% csrf_token %}
+                                                    <!-- <div class="form-floating mb-3">
+                                                        <label for="floatingInput">Name</label> -->
+                                                        <input type="text" class="form-control" name="name" id="xname" placeholder="Name" required>
+                                                    <!-- </div>
+                                                    <div class="form-floating mb-3">
+                                                        <label for="floatingPassword">Phone</label> -->
+                                                        <input type="number" class="form-control" name="phone_no" id="xname" placeholder="phone" required>
+                                                    <!-- </div>
+                                                    <div class="form-floating mb-3">
+                                                        <label for="floatingInput">Email address</label> -->
+                                                        <input type="email" class="form-control"  name= "email" id="xname" placeholder="name@example.com" required>
+                                                    <!-- </div> -->
+                                                    <input type="hidden" name="product_id" value="{{ project_details.id }}">
+
+                                                    <label class="check">
+                                                        <input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+                                                        <br><input type="checkbox" checked="checked" name="remember"> I am interested in home loans
+                                                    </label>
+                                                    <button type="submit" href="/housing/">Get contact Details</button>
+                                                </form>
+                                                </div>
+                                    
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                              <button type="button" class="button30" data-dismiss="modal">Get Contact Details</button> -->
+                                              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                            <!-- </div> -->
+                                          </div>
+                                        </div>
+                                      </div>
+                                    
+    
+                                </div>
+                          {% endfor %}
+                          {% else %}
+                          <img src="/static/assets/img/not-found.png" height="100px" width='100px' class="found">
+                          <p>Found no properties matching your criteria</p>
+                          {% endif %}
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="in-3-years">
+                           <div class="container">
+                            <div class="row">
+                              {% if in_3_years_projects %}
+                              {% for project in in_3_years_projects %}
+                              <div class="col-md-6">
+                                    <img src="{{project.image.url}}">
+                                   
+                                    <h4><b>{{project.name}}</b></h4>
+                                    <h6>&#8377;{{project.price}}</h6>
+                                    <p class="les">{{project.Configuration}}</p>
+                                    <p class="les"> {{project.address}}</p>
+                                    <!-- <button class="button15">contact</button> -->
+                                    <button type="button" class="button15" data-bs-toggle="modal" data-bs-target="#epemodl">
+                                        Contact
+                                       </button>
+                                   
+                                     <!--modal-->
+                                    <div class="modal fade" id="epemodl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="most">
+                                                <i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+                                            </h5>
+                                    
+                                              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="text-center">
+                                                <h5>Contact seller</h5>
+                                                <div class="row">
+                                                   <div class="col-md-6 pd-5">
+                                                <div>
+                                                   &nbsp;&nbsp;<img src="{{project.logo_image.url}}">
+                                                </div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                <div>
+                                                   <h6>{{project.name}}</h6>
+                                                   <p>Developer</p>
+                                                   <h6>+9191957...</h6>
+                                                </div>
+                                               </div>
+                                               </div>
+                                               <div>
+                                                   <h5>Please share Your Contact</h5>
+                                               </div>
+                                           </div>
+                                            <div class="modal-body">
+                                              <div class="container">
+                                                <form  method="POST" action="/housing/contact/" target="_blank">
+                                                    {% csrf_token %}
+                                                    <!-- <div class="form-floating mb-3">
+                                                        <label for="floatingInput">Name</label> -->
+                                                        <input type="text" class="form-control" name="name" id="xname" placeholder="Name" required>
+                                                    <!-- </div>
+                                                    <div class="form-floating mb-3">
+                                                        <label for="floatingPassword">Phone</label> -->
+                                                        <input type="number" class="form-control" name="phone_no" id="xname" placeholder="phone" required>
+                                                    <!-- </div>
+                                                    <div class="form-floating mb-3">
+                                                        <label for="floatingInput">Email address</label> -->
+                                                        <input type="email" class="form-control"  name= "email" id="xname" placeholder="name@example.com" required>
+                                                    <!-- </div> -->
+                                                    <input type="hidden" name="product_id" value="{{ project_details.id }}">
+
+                                                    <label class="check">
+                                                        <input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+                                                        <br><input type="checkbox" checked="checked" name="remember"> I am interested in home loans
+                                                    </label>
+                                                    <button type="submit" href="/housing/">Get contact Details</button>
+                                                </form>
+                                                </div>
+                                    
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                              <button type="button" class="button30" data-dismiss="modal">Get Contact Details</button> -->
+                                              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                            <!-- </div> -->
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                          {% endfor %}
+                          {% else %}
+                          <img src="/static/assets/img/not-found.png" height="100px" width='100px' class="found">
+                          <p>Found no properties matching your criteria</p>
+                          {% endif %}
+                            </div>
+                           </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane " id="beyond-3-years">
+                          {% if beyond_3_years_projects %}
+                          {% for project in beyond_3_years_projects %}
+                              <div class="col-md-6">
+                                    <img src="{{project.image.url}}">
+                                    
+                                    <h4><b>{{project.name}}</b></h4>
+                                    <h6>&#8377;{{project.price}}</h6>
+                                    <p class="les">{{project.Configuration}}</p>
+                                    <p class="les"> {{project.address}}</p>
+                                    <!-- <button class="button15">contact</button> -->
+                                    <button type="button" class="button15" data-bs-toggle="modal" data-bs-target="#epemodl">
+                                        Contact
+                                       </button>
+                                   
+                                     <!--modal-->
+                                    <div class="modal fade" id="epemodl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="most">
+                                                <i class="fa fa-bolt some" aria-hidden="true"></i>&nbsp;&nbsp Awesome!Most liked Project in this area
+                                            </h5>
+                                    
+                                              <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="text-center">
+                                                <h5>Contact seller</h5>
+                                                <div class="row">
+                                                   <div class="col-md-6 pd-5">
+                                                <div>
+                                                   &nbsp;&nbsp;<img src="{{project.logo_image.url}}">
+                                                </div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                <div>
+                                                   <h6>{{project.name}}</h6>
+                                                   <p>Developer</p>
+                                                   <h6>+9191957...</h6>
+                                                </div>
+                                               </div>
+                                               </div>
+                                               <div>
+                                                   <h5>Please share Your Contact</h5>
+                                               </div>
+                                           </div>
+                                            <div class="modal-body">
+                                              <div class="container">
+                                                <form  method="POST" action="/housing/contact/" target="_blank">
+                                                    {% csrf_token %}
+                                                    <!-- <div class="form-floating mb-3">
+                                                        <label for="floatingInput">Name</label> -->
+                                                        <input type="text" class="form-control" name="name" id="xname" placeholder="Name" required>
+                                                    <!-- </div>
+                                                    <div class="form-floating mb-3">
+                                                        <label for="floatingPassword">Phone</label> -->
+                                                        <input type="number" class="form-control" name="phone_no" id="xname" placeholder="phone" required>
+                                                    <!-- </div>
+                                                    <div class="form-floating mb-3">
+                                                        <label for="floatingInput">Email address</label> -->
+                                                        <input type="email" class="form-control"  name= "email" id="xname" placeholder="name@example.com" required>
+                                                    <!-- </div> -->
+                                                    <input type="hidden" name="product_id" value="{{ project_details.id }}">
+
+                                                    <label class="check">
+                                                        <input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+                                                        <br><input type="checkbox" checked="checked" name="remember"> I am interested in home loans
+                                                    </label>
+                                                    <button type="submit" href="/housing/">Get contact Details</button>
+                                                </form>
+                                                </div>
+                                    
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                              <button type="button" class="button30" data-dismiss="modal">Get Contact Details</button> -->
+                                              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                                            <!-- </div> -->
+                                          </div>
+                                        </div>
+                                      </div>
+                                </div>
+                          {% endfor %}
+                          {% else %}
+                          <img src="/static/assets/img/not-found.png" height="100px" width='100px' class="found">
+                          <p>Not Found properties matching your criteria</p>
+                          {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Faqs start-->
+    <div class="container" id="faq">
+      <div class="row">
+          <div class="col-md-12">
+              <h3><b>Frequently Asked Questions</b></h3>
+              
+              {% for faq in project_details.faq_set.all|slice:":3" %}
+              <button class="accordion">{{faq.title|safe}}</button>
+              <div class="panel">
+                  <p>{{faq.Description|safe}} <a href="#"></a></p>
+              </div>
+              {% endfor %}
+  
+              {% if project_details.faq_set.count > 3 %}
+              <div id="more" style="display: none;">
+                  {% for faq in project_details.faq_set.all|slice:"3:" %}
+                  <button class="accordion">{{faq.title|safe}}</button>
+                  <div class="panel">
+                      <p>{{faq.Description|safe}} <a href="#"></a></p>
+                  </div>
+                  {% endfor %}
+              </div>
+              <button onclick="toggleReadMore()" id="myBtn">Read more</button>
+              {% endif %}
+          </div>
+      </div>
+  </div>
+  
+
+  
+    <!--Faqs end-->
+    <!--Developer end-->
+    <div class="container mt-5" id="developer">
+        <div class="row">
+            <h3>Similar Projects By {{project_details.name}}</h3>
+            {% for source in sources %}
+            <div class="col-md-5 mt-3">
+                <a href="/housing/Buy/{{source.name}}/"><img style="height:200px;width:300px" src="{{ source.image.url }}"></a>
+                <h4 style="margin-top:10px;">{{source.name}}</h4>
+                <h5>&#8377;{{source.price}}</h5>
+                <p>{{source.Configuration}}</p>
+                <p> {{source.address}}</p>
+
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!--quick links-->
+    <!-- <div class="container mt-4">
+        <h3>GHR Callisto-Quick links</h3>
+        <div class="row mt-5">
+            <div class="col-md-3">
+             <a href=""><button class="button18">GHR callisto-Brochure</button> </a>
+            </div>
+            <div class="col-md-3">
+                <a href=""><button class="button18">GHR callisto-location map</button></a>
+            </div>
+             <div class="col-md-3">
+                <a href=""><button class="button18">GHR callisto-Amenities</button></a>
+            </div>
+        </div>
+      <div class="row mt-5">
+            <div class="col-md-3">
+                <a href=""><button class="button18">GHR callisto-Floor plan</button></a>
+            </div>
+            <div class="col-md-3">
+                <a href=""><button class="button18">GHR callisto-photos&videos</button></a>
+            </div>
+            
+        </div>
+    </div> -->
+    <!-- </div> -->
+    <!--quick links end-->
+    
+    <!--Disclamier-->
+    <div class="container mt-5">
+        <div class="col-md-12">
+            <h3>Disclaimer</h3>
+            <p class="act">Housing.com is only acting as a medium for providing online advertising services. Housing.com does not in any way facilitate and cannot be deemed to be facilitating sales between developers and the visitors/users of the website. The display of information on Housing.com with respect to a developer or project does not guarantee that the developer / project has registered under the Real Estate (Regulation and Development), 2016 or is compliant with the same. Before deciding to purchase or taking any other action, you are requested to exercise due caution and to independently validate and verify all information about the project.</p>
+            <a href="" class="know">Read Disclamier</a>
+        </div>
+    </div>
+    <!--Disclamier-end-->
+     </div>
+    <div class="col-md-4">
+      <form class="sticky-form">
+        <div>
+            <h3 class="gre"><i class="bi bi-lightning-charge-fill info"></i>Awesome! Most liked project in this Area</h3>
+            <div class="row mt-2">
+                <h5>Contact seller</h5>
+               <div class="col-md-4">
+            <div>
+            <img src="{{project_details.logo_image.url}}">
+            </div>
+           </div>
+           <div class="col-md-4">
+            <div>
+               <h6>{{project_details.name}}</h6>
+               <p>Developer</p>
+               <p>+9191957...</p>
+            </div>
+            </div>
+            <div>
+                <h6>Please share Your Contact</h6>
+            </div>
+              <div class="container mb-4">
+                <form  method="POST" action="/housing/contact/" target="_blank">
+                    {% csrf_token %}
+                    <!-- <div class="form-floating mb-3">
+                        <label for="floatingInput">Name</label> -->
+                        <input type="text" class="form-control" name="name" id="xname1" placeholder="Name" required>
+                    <!-- </div>
+                    <div class="form-floating mb-3">
+                        <label for="floatingPassword">Phone</label> -->
+                        <input type="number" class="form-control" name="phone_no" id="xname1" placeholder="phone" required>
+                    <!-- </div> -->
+                    <!-- <div class="form-floating mb-3">
+                        <label for="floatingInput">Email address</label> -->
+                        <input type="email" class="form-control"  name= "email" id="xname1" placeholder="name@example.com" required>
+                    <!-- </div> -->
+                    <input type="hidden" name="product_id" value="{{ project_details.id }}">
+
+                    <label class="check">
+                        <input type="checkbox" checked="checked" name="remember"> I agree to be contacted by Housing and other agents via WhatsApp, SMS, phone, email etc
+                        <br><input type="checkbox" checked="checked" name="remember"> I am interested in home loans
+                    </label>
+                    <button type="submit" href="/housing/">Get contact Details</button>
+                </form>
+                </div>
+           </div>
+       </div>
+       </form>
+    </div>
+    </div>
+    </div>
+    <!-- </div> -->
+    
+
+
+
+
+     <!--Archivers-->
+  
+
+    <script type="text/javascript">
+        const tabs = document.querySelectorAll('[data-tab-value]')
+        const tabInfos = document.querySelectorAll('[data-tab-info]')
+    
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = document
+                    .querySelector(tab.dataset.tabValue);
+    
+                tabInfos.forEach(tabInfo => {
+                    tabInfo.classList.remove('active')
+                })
+                target.classList.add('active');
+            })
+        })
+    </script>
+
+    <script>
+        function myFunction() {
+          var dots = document.getElementById("dots");
+          var moreText = document.getElementById("more");
+          var btnText = document.getElementById("myBtn");
+        
+          if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more"; 
+            moreText.style.display = "none";
+          } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less"; 
+            moreText.style.display = "inline";
+          }
+        }
+        </script>
+
+
+<script>
+  function toggleReadMore() {
+      var moreText = document.getElementById("more");
+      var btnText = document.getElementById("myBtn");
+
+      if (moreText.style.display === "none" || moreText.style.display === "") {
+          moreText.style.display = "block";
+          btnText.innerHTML = "Read less";
+      } else {
+          moreText.style.display = "none";
+          btnText.innerHTML = "Read more";
+      }
+  }
+</script>
+
+        <script>
+            function myFuncion() {
+              var dots = document.getElementById("dot");
+              var moreText = document.getElementById("mor");
+              var btnText = document.getElementById("myBt");
+            
+              if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Read more"; 
+                moreText.style.display = "none";
+              } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less"; 
+                moreText.style.display = "inline";
+              }
+            }
+            </script>
+        <script>
+            function openCity(evt, cityName) {
+              var i, tabcontent, tablinks;
+              tabcontent = document.getElementsByClassName("tabcontent");
+              for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+              }
+              tablinks = document.getElementsByClassName("tablinks");
+              for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+              }
+              document.getElementById(cityName).style.display = "block";
+              evt.currentTarget.className += " active";
+            }
+            </script>
+
+             <script>
+                function myFnction() {
+                  var x = document.getElementById("myDIV");
+                  if (x.style.display === "none") {
+                    x.style.display = "block";
+                  } else {
+                    x.style.display = "none";
+                  }
+                }
+                </script>
+            
+            <script>
+                $(document).ready(function() {
+                    $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+                        disableOn: 700,
+                        type: 'iframe',
+                        mainClass: 'mfp-fade',
+                        removalDelay: 160,
+                        preloader: false,
+                        fixedContentPos: false
+                    });
+                });
+    
+            </script>
+    
+            <script>
+                $('.slick-carousel').each(function() {
+                    var slider = $(this);
+                    $(this).slick({
+                        infinite: true,
+                        dots: false,
+                        arrows: false,
+                        centerMode: true,
+                        centerPadding: '0'
+                    });
+    
+                    $(this).closest('.slick-slider-area').find('.slick-prev').on("click", function() {
+                        slider.slick('slickPrev');
+                    });
+                    $(this).closest('.slick-slider-area').find('.slick-next').on("click", function() {
+                        slider.slick('slickNext');
+                    });
+                });
+    
+            </script>
+             <script>
+                function myFunctio() {
+                  var x = document.getElementById("my");
+                  if (x.style.display === "none") {
+                    x.style.display = "block";
+                  } else {
+                    x.style.display = "none";
+                  }
+                }
+                </script>
+               
+               <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+               <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+                <script>
+               $(document).ready(function() {
+                   $("#news-slider-26").owlCarousel({
+                       items : 3,
+                       itemsDesktop:[1199,2],
+                       itemsDesktopSmall:[980,1],
+                       itemsTablet: [600,1],
+                       itemsMobile : [550,1],
+                       pagination:true,
+                       autoPlay:true
+                   });
+               });
+                 </script>
+
+
+
+    <script>
+function sticky_relocate() {
+  var window_top = $(window).scrollTop();
+  var div_top = $('#sticky-anchor').offset().top;
+  if (window_top > div_top) {
+    $('#sticky').addClass('stick');
+  } else {
+    $('#sticky').removeClass('stick');
+  }
+}
+$(function() {
+  $(window).scroll(sticky_relocate);
+  sticky_relocate();
+});
+
+  </script> 
+                
+
+    
+   
+                    
+{% endblock %}

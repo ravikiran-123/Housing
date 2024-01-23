@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style data-emotion-css="6yl0sf">
+</style>
+<div class="css-6yl0sf">
+	<style data-emotion-css="kmb448">
+	</style>
+	<div class="css-kmb448" style="background-image: url({{banners.image.url}});">
+		<style data-emotion-css="13c1cwa">
+		</style>
+		<div class="css-13c1cwa">
+			<style data-emotion-css="1cn7om3">
+			</style>
+			<h1 class="banner-title css-1cn7om3">Properties to buy in <strong
+					class="bold">Hyderabad</strong></h1>
+			<style data-emotion-css="ktu8be">
+			</style>
+			<!-- <div class="css-ktu8be">Parr...se Perfect</div> -->
+			<style data-emotion-css="cryaei">
+			</style>
+			<div class="search-wrap css-cryaei">
+				<style data-emotion-css="k008qs">
+				</style>
+				<nav data-q="service" class="css-k008qs">
+					<style data-emotion-css="1rcmzf8">
+					</style><a data-q="active" class="search-tab search-active-tab css-1rcmzf8"
+						href="/" target="_self">Buy</a>
+					<style data-emotion-css="18w4akt">
+						
+					</style><a data-q="false" class="search-tab css-18w4akt"
+						href="/rent/" target="_self">Rent</a>
+					<style data-emotion-css="167vrx2">
+						
+						
+					</style><a data-q="false" class="search-tab css-167vrx2"
+						href="/commercial/"target="_self">Commercial</a><a
+						data-q="false" class="search-tab css-18w4akt" href="/plots/"
+						target="_self">Plots</a>
+				</nav>
+				<style data-emotion-css="5pw9gy">
+					
+				</style>
+				<div class="search-box css-5pw9gy">
+					<style data-emotion-css="126ysyq">
+						
+						
+					</style>
+				
+				
+					<style data-emotion-css="1p9lys">
+						
+					</style>
+					<div data-q="search" class="css-1p9lys">
+						<style data-emotion-css="1om6f21">
+							
+						</style>
+						<form method="get"  action="{% url 'property_search' %}">
+						<div id="autocomplete" >
+						<input type="text"
+							placeholder="Search for locality, landmark, project, or builder"
+							class="autocomplete-input"  name="query" value="" />
+							<style data-emotion-css="1ddin2y"> 
+							
+							</style><button class="cta  css-1ddin2y">Search</button>
+							<ul class="autocomplete-result-list"></ul>
+							
+						</div>
+						
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			<style data-emotion-css="56j96e">
+				
+			</style>
+			<div class="css-56j96e">
+				<style data-emotion-css="ibbbzb animation-8cmihf">
+					
+				</style>
+				<div class="css-ibbbzb"></div>
+				<style data-emotion-css="1igh16y">
+				
+				</style>  
+			 </div>
+		</div>
+	</div>
+</div>
+
+
+<section class="property-section">
+	<div class="container mt-5">
+		<div>
+			<h2>Properties for sale:</h2>
+		</div>
+		<div class="row">
+			{% for product in list_products %}
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<a href="Buy/{{product.name}}"><img src="{{product.image.url}}" alt="" class="dge"></a>
+						<div class="pi-badge new">For Sale</div>
+					</div>
+					<div class="lok">{{product.name}}</div>
+					<div class="ment">{{product.Configuration}}</div>
+				<div class="bowl">{{product.address}}</div>
+					<div class="est">&#8377;{{product.price}}</div>
+					<!-- <a href="#" class="readmore-btn">Find out more</a> -->
+						
+						  <!-- Modal -->
+						  
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+
+<section class="property-section">
+	<div class="container mt-5">
+		<div>
+			<h2>Properties for rent:</h2>
+		</div>
+		<div class="row">
+			{% for product in listings %}
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<a href="rents/{{product.name}}"><img src="{{product.image.url}}" alt="" class="dge"></a>
+						<div class="pi-badge for-rent">For Rent</div>
+					</div>
+					<div class="lok">{{product.name}}</div>
+					<div class="ment">{{product.Configuration}}</div>
+				<div class="bowl">{{product.address}}</div>
+					<div class="est">&#8377;{{product.price}}</div>
+					<!-- <a href="#" class="readmore-btn">Find out more</a> -->
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+
+<section class="property-section">
+	<div class="container mt-5">
+		<div>
+			<h2>Commercial Properties:</h2>
+		</div>
+		<div class="row">
+			{% for product in commercial_listings %}
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<a href="Features/{{product.name}}"><img src="{{product.image.url}}" alt="" class="dge"></a>
+						<div class="pi-badge {% if product.commercial_type == 'Recently Added properties for sale' %}for-sale{% else %}for-rent{% endif %}">
+                            {% if product.commercial_type == 'Recently Added properties for sale' %}For Sale{% else %}For Rent{% endif %}
+                        </div>
+					</div>
+					<div class="lok">{{product.name}}</div>
+					<div class="ment">{{product.Configuration}}</div>
+				<div class="bowl">{{product.address}}</div>
+					<div class="est">&#8377;{{product.price}}</div>
+					<!-- <a href="#" class="readmore-btn">Find out more</a> -->
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+
+<section class="property-section">
+	<div class="container mt-5">
+		<div>
+			<h2>Lands/Plots:</h2>
+		</div>
+		<div class="row">
+			{% for product in plot_listings %}
+			<div class="col-lg-4">
+				<div class="property-item">
+					<div class="pi-image">
+						<a href="residentialplots/{{product.name}}/"><img src="{{product.image.url}}" alt="" class="dge"></a>
+						<div class="pi-badge new">For Sale</div>
+					</div>
+					<div class="lok">{{product.name}}</div>
+					<div class="ment">{{product.Configuration}}</div>
+				<div class="bowl">{{product.address}}</div>
+					<div class="est">&#8377;{{product.price}}</div>
+					<!-- <a href="#" class="readmore-btn">Find out more</a> -->
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+	<script>
+		// Get the canvas element
+		var canvas = document.getElementById("myCanvas");
+	
+		// Get the 2D rendering context
+		var ctx = canvas.getContext("2d");
+	
+		// Draw a red rectangle
+		ctx.fillStyle = "red";
+		ctx.fillRect(50, 50, 200, 100);
+	
+		// Draw a blue circle
+		ctx.fillStyle = "blue";
+		ctx.beginPath();
+		ctx.arc(250, 250, 50, 0, 2 * Math.PI);
+		ctx.fill();
+	</script>
+	<script>
+		$(function() {
+	  $('.menu-click').click( function() {
+		$('.menu').toggleClass('open');
+	  });
+	  $("body").on("swipeleft", function() {
+		$('.menu').addClass('open');
+	  });
+	  $(".menu").on("swiperight", function() {
+		$('.menu').toggleClass('open');
+	  });
+	});
+	 </script>
+
+<script>
+	new Autocomplete('#autocomplete', {
+	  search: input => {
+		const url = `/housing/search/?query=${encodeURIComponent(input)}`
+		return new Promise(resolve => {
+		  fetch(url)
+			.then(response => response.json())
+			.then(data => {
+			  const addressSuggestions = data.payload.map(d => d.address);
+			  const citySuggestions = data.payload.map(d => d.city);
+			  const developerNameSuggestions = data.payload.map(d => d.developer_name);
+			  
+			  // Combine suggestions from both fields
+			  const combinedSuggestions = [...addressSuggestions, ...citySuggestions, ...developerNameSuggestions];
+			  
+			  console.log(combinedSuggestions);
+			  resolve(combinedSuggestions);
+			})
+		})
+	  },
+	  renderResult: (result, props) => {
+		let group = '';
+		if (result.index % 3 === 0) {
+		  group = `<li class="group">Group</li>`;
+		}
+		return `
+		${group}
+		<li ${props}>
+		  <div class="wiki-title">
+			${result}
+		  </div>
+		</li>
+		`;
+	  },
+	});
+  </script>
+  
+{% endblock %}

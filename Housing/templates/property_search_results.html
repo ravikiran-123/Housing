@@ -1,0 +1,269 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<style data-emotion-css="6yl0sf">
+</style>
+<div class="css-6yl0sf">
+	<style data-emotion-css="kmb448">
+	</style>
+	<div class="css-kmb448" style="background-image: url({{banners.image.url}});">
+		<style data-emotion-css="13c1cwa">
+		</style>
+		<div class="css-13c1cwa">
+			<style data-emotion-css="1cn7om3">
+			</style>
+			<h1 class="banner-title css-1cn7om3">Properties to buy in <strong
+					class="bold">Hyderabad</strong></h1>
+			<style data-emotion-css="ktu8be">
+			</style>
+			<!-- <div class="css-ktu8be">Parr...se Perfect</div> -->
+			<style data-emotion-css="cryaei">
+			</style>
+			<div class="search-wrap css-cryaei">
+				<style data-emotion-css="k008qs">
+				</style>
+				<nav data-q="service" class="css-k008qs">
+					<style data-emotion-css="1rcmzf8">
+					</style><a data-q="active" class="search-tab search-active-tab css-1rcmzf8"
+						href="/housing/" target="_self">Buy</a>
+					<style data-emotion-css="18w4akt">
+						
+					</style><a data-q="false" class="search-tab css-18w4akt"
+						href="/housing/rent/" target="_self">Rent</a>
+					<style data-emotion-css="167vrx2">
+						
+						
+					</style><a data-q="false" class="search-tab css-167vrx2"
+						href="/housing/commercial/"target="_self">Commercial</a><a
+						data-q="false" class="search-tab css-18w4akt" href="/housing/plots/"
+						target="_self">Plots</a>
+				</nav>
+				<style data-emotion-css="5pw9gy">
+					
+				</style>
+				<div class="search-box css-5pw9gy">
+					<style data-emotion-css="126ysyq">
+						
+						
+					</style>
+				
+				
+					<style data-emotion-css="1p9lys">
+						
+					</style>
+					<div data-q="search" class="css-1p9lys">
+						<style data-emotion-css="1om6f21">
+							
+						</style>
+						<form method="get"  action="/housing/property-search/">
+						<div id="autocomplete" >
+						<input type="text"
+							placeholder="Search for locality, landmark, project, or builder"
+							class="autocomplete-input"  name="query" value="" />
+							<style data-emotion-css="1ddin2y"> 
+							
+							</style><button class="cta  css-1ddin2y">Search</button>
+							<ul class="autocomplete-result-list"></ul>
+							
+						</div>
+						
+						</form>
+					</div>
+					
+				</div>
+			</div>
+			<style data-emotion-css="56j96e">
+				
+			</style>
+			<div class="css-56j96e">
+				<style data-emotion-css="ibbbzb animation-8cmihf">
+					
+				</style>
+				<div class="css-ibbbzb"></div>
+				<style data-emotion-css="1igh16y">
+				
+				</style>  
+			 </div>
+		</div>
+	</div>
+</div>
+
+
+  <div class="container mt-2 ">
+    <div class="row">
+        <div class="col-md-12">
+ <ul class="breadcrumb">
+    <li><a href="/housing/">Home</a></li>
+    <li><a href="#">Search</a></li>
+  
+  </ul>
+</div>
+</div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>Search Results</h4>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+      {% if properties%}
+      {% for property in properties %}
+    <div class="col-md-9">
+      <div class="card use1">
+      <div class="row">
+      <div class="col-md-4 mt-3">
+        <div>
+            <img src="{{property.image.url}}" alt="" class="img-fluid">
+        </div>
+        </div>
+      <div class="col-md-8 mt-3">
+        {% if property.model_name == 'projectdetail' %}
+            <a href='/housing/Buy/{{property.name}}/'><h2>{{ property.name }}</h2></a>
+        {% elif property.model_name == 'rentprojectdetail' %}
+            <a href='/housing/rent/rents/{{property.name}}/'><h2>{{ property.name }}</h2></a>
+        {% elif property.model_name == 'commercialprojectdetail' %}
+            <a href='/housing/commercial/Features/{{property.name}}/'><h2>{{ property.name }}</h2></a>
+        {% elif property.model_name == 'plotsprojectdetail' %}
+            <a href='/housing/plots/residentialplots/{{property.name}}/'><h2>{{ property.name }}</h2></a>
+        {% endif %}
+        <p><b>{{property.address}}</p>
+        <div class="row">
+          <div class="col-md-5">
+            <div>
+             <h5 class="pro">  <i class="bi bi-textarea"></i>&nbsp;Price</h5>
+              <p class="acres">&nbsp;&#8377;{{property.price}}</p>
+          </div>
+          </div>
+          <div class="col-md-5">
+            <div>
+              <h5 class="pro"> <i class="bi bi-textarea"></i>&nbsp;Configuration</h5>
+              <p class="acres">&nbsp;{{property.Configuration}}</p>
+          </div>
+          </div>
+        </div>
+        {% if property.model_name == 'projectdetail' %}
+        <p class="acre">{{property.description|safe|slice:"0:100"}}...<a href="/housing/Buy/{{property.name}}/">More</a></p>
+        {% elif property.model_name == 'rentprojectdetail' %}
+        <p class="acre">{{property.description|safe|slice:"0:100"}}...<a href="/housing/rent/rents/{{property.name}}/">More</a></p>
+        {% elif property.model_name == 'commercialprojectdetail' %}
+        <p class="acre">{{property.description|safe|slice:"0:100"}}...<a href="/housing/commercial/Features/{{property.name}}/">More</a></p>
+        {% elif property.model_name == 'plotsprojectdetail' %}
+        <p class="acre">{{property.description|safe|slice:"0:100"}}...<a href="/housing/plots/residentialplots/{{property.name}}/">More</a></p>
+        {% endif %}
+      </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% else %}
+  <h1>No Results Found</h1>
+  {% endif %}
+ 
+    
+</div>
+</div>
+<div class="pagination">
+  <ul>
+      {% if feature_objects.has_previous %}
+          <li><a href="?page=1">First</a></li>
+          <li><a href="?page={{ feature_objects.previous_page_number }}">« Prev</a></li>
+      {% endif %}
+
+      {% for num in feature_objects.paginator.page_range %}
+          <li class="{% if num == feature_objects.number %}active{% endif %}">
+              <a href="?page={{ num }}">{{ num }}</a>
+          </li>
+      {% endfor %}
+
+      {% if feature_objects.has_next %}
+          <li><a href="?page={{ feature_objects.next_page_number }}">Next »</a></li>
+          <li><a href="?page={{ feature_objects.paginator.num_pages }}">Last</a></li>
+      {% endif %}
+  </ul>
+</div>
+
+
+<!-- <script>
+  new Autocomplete('#autocomplete',{
+    search : input => {
+      console.log(input)
+      const url = `/housing/search/?query=${(input)}`
+      return new Promise(resolve =>{
+        fetch(url)
+        .then(response =>response.json())
+        .then(data =>{
+          console.log(data.payload)
+          console.log(data.payload.map((d)=>(d.address)))
+          resolve(data.payload.map((d)=>(d.address)))
+        })
+      })
+    },
+    renderResult : (result, props) =>{
+      
+      console.log('props+++',result)
+      let group = ''
+      if(result.index % 3 == 0){
+        group = `<li class="group">Group</li>`
+      }
+      return `
+      ${group}
+      <li ${props}>
+        <div class="wiki-title">
+          ${result}
+        </div>
+      </li>
+      `
+    },
+  })
+  
+
+</script> -->
+
+<script>
+  new Autocomplete('#autocomplete', {
+    search: input => {
+      const url = `/housing/search/?query=${encodeURIComponent(input)}`
+      return new Promise(resolve => {
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            const addressSuggestions = data.payload.map(d => d.address);
+            const citySuggestions = data.payload.map(d => d.city);
+            const developerNameSuggestions = data.payload.map(d => d.developer_name);
+            
+            // Combine suggestions from both fields
+            const combinedSuggestions = [...addressSuggestions, ...citySuggestions, ...developerNameSuggestions];
+            
+            console.log(combinedSuggestions);
+            resolve(combinedSuggestions);
+          })
+      })
+    },
+    renderResult: (result, props) => {
+      let group = '';
+      if (result.index % 3 === 0) {
+        group = `<li class="group">Group</li>`;
+      }
+      return `
+      ${group}
+      <li ${props}>
+        <div class="wiki-title">
+          ${result}
+        </div>
+      </li>
+      `;
+    },
+  });
+</script>
+
+
+
+
+{% endblock %}
+   

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+	<!-- Contact Section end -->
+	<section class="contact-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
+					<div class="section-title text-left">
+						<h2>Get in touch</h2>
+					</div>
+					<div class="contact-text">
+						<p>We Help you find the best places and offer near you. Bring to the table win-win survival strategies to ensure proactive domination going forward.</p>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="contact-info-box">
+								<div class="ci-icon">
+									<span>Housing.com</span>
+								</div>
+								<h4>Hyderabad</h4>
+								<p>Bachupally </p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<form  class="contact-form" method="POST" action="/contact/" target="_blank">
+				{% csrf_token %}
+				
+				<div class="row">
+					<div class="col-lg-3">
+						<input type="text"  name="name" placeholder="Your name">
+					</div>
+					<div class="col-lg-3">
+						<input type="text" name="email" placeholder="Your e-mail">
+					</div>
+					<div class="col-lg-3">
+						<input type="number" name="phone_no" placeholder="phone">
+					</div>
+					<div class="col-lg-12">
+						<button type="submit" href="/" class="site-btn sb-big">Send message</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</section>
+	<!-- Contact Section end -->
+
+{% endblock %}
